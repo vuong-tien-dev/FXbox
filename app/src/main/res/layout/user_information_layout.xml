@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:paddingVertical="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_user_avatar"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:civ_border_width="0.1dp"
+        app:civ_border_color="@color/white"
+        android:src="@drawable/default_avatar_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.vtstudio.fxbox.fxviews.textview.VerifiableTextView
+        android:id="@+id/profile_user_unique_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:textColor="@color/white_240"
+        android:textSize="13.5sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_avatar"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_avatar" />
+
+    <LinearLayout
+        android:id="@+id/user_following_count_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintEnd_toStartOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintTop_toTopOf="@+id/user_follower_count_wrapper">
+
+        <TextView
+            android:id="@+id/user_following_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_text_medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="93"
+            android:textColor="@color/white"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:id="@+id/user_following_count_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_display_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/profile_following_count"
+            android:textColor="@color/rgb_210"
+            android:textDirection="ltr"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <com.vtstudio.fxbox.fxviews.listview.BorderLinearLayout
+        android:id="@+id/user_follower_count_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:border="right|left"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_unique_id"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_unique_id"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_unique_id">
+
+        <TextView
+            android:id="@+id/user_follower_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_text_medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="2893"
+            android:textColor="@color/white"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:id="@+id/user_follower_count_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_display_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/profile_follower_count"
+            android:textColor="@color/rgb_210"
+            android:textDirection="ltr"
+            android:textSize="11sp" />
+    </com.vtstudio.fxbox.fxviews.listview.BorderLinearLayout>
+
+    <LinearLayout
+        android:id="@+id/user_heart_count_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintStart_toEndOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintTop_toTopOf="@+id/user_follower_count_wrapper">
+
+        <TextView
+            android:id="@+id/user_heart_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_text_medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:id="@+id/user_heart_count_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_display_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/profile_total_favorited"
+            android:textColor="@color/rgb_210"
+            android:textDirection="ltr"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profile_user_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:gravity="center_horizontal"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white_240"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_follower_count_wrapper" />
+
+    <View
+        android:id="@+id/align_view"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintStart_toStartOf="@+id/user_follower_count_wrapper"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_signature" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_sync_data_wrapper"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:background="@drawable/corner_180_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/align_view"
+        app:layout_constraintEnd_toStartOf="@+id/align_view"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_signature">
+
+        <TextView
+            android:id="@+id/profile_sync_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tiktok_text_bold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:text="@string/sync_data"
+            android:textColor="@color/white_240"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profile_user_data_loading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/profile_user_data_loading"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/profile_add_collection"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_180_shape"
+        android:fontFamily="@font/tiktok_text_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="10dp"
+        android:text="@string/add_to_collection"
+        android:textColor="@color/white_240"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/align_view"
+        app:layout_constraintStart_toEndOf="@+id/align_view"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_signature" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_width="96dp"
+    android:layout_height="96dp"
+    app:cardBackgroundColor="@color/black">
+    <com.vtstudio.fxbox.fxviews.progressbar.FxLoadingView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@color/black_a50"
+        android:layout_gravity="center"/>
+</androidx.cardview.widget.CardView>

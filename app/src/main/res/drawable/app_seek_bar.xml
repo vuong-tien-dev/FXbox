@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background (Viền ngoài) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <stroke android:color="@color/rgb_34" android:width="4dp"/>
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <!-- Secondary Progress (Tiến trình thứ cấp) -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape android:shape="rectangle">
+                <stroke android:color="@color/colorAccent" android:width="4dp"/>
+                <solid android:color="@android:color/transparent"/>
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Progress (Tiến trình chính) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <stroke android:color="@color/colorAccent" android:width="4dp"/>
+                <solid android:color="@android:color/transparent"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

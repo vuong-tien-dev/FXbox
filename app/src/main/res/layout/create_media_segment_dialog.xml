@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/media_segment_title_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/base_edit_text_background"
+        android:fontFamily="@font/red_hat_text_medium"
+        android:hint="@string/enter_playlist_name"
+        android:padding="6dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/rgb_230"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jaygoo.widget.RangeSeekBar
+        android:id="@+id/segment_range_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingVertical="6dp"
+        app:rsb_mode="range"
+        app:rsb_progress_color="@color/fx_label_color"
+        app:rsb_thumb_width="16dp"
+        app:rsb_thumb_height="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/media_segment_title_edt"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/start_time_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_bold"
+        android:maxLines="1"
+        android:padding="4dp"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:textColor="@color/white_a85"
+        android:textSize="15sp"
+        android:text="0"
+        android:layout_marginTop="12dp"
+        app:layout_constraintLeft_toLeftOf="@+id/segment_range_slider"
+        app:layout_constraintTop_toBottomOf="@id/segment_range_slider"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/end_time_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_bold"
+        android:maxLines="1"
+        android:padding="4dp"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:textColor="@color/white_a85"
+        android:textSize="15sp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        app:layout_constraintRight_toRightOf="@+id/segment_range_slider"
+        app:layout_constraintTop_toBottomOf="@id/segment_range_slider"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

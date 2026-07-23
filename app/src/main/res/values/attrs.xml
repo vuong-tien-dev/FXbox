@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GradientTextView">
+        <attr name="fromGradient" format="color" />
+        <attr name="toGradient" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ExoSeekBar">
+        <attr name="trackingEffect" format="boolean" />
+        <attr name="activeDrawable" format="reference" />
+        <attr name="inactiveDrawable" format="reference" />
+        <attr name="activeThumb" format="reference" />
+        <attr name="inactiveThumb" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="FxNavigationView" >
+        <attr name="colorWhenTouch" format="color" />
+        />
+    </declare-styleable>
+
+    <declare-styleable name="FxExpandableTextView">
+        <!-- Max lines to display when expanded -->
+        <attr name="maxLinesToScroll" format="integer" />
+        <attr name="animation_duration" format="integer" />
+        <attr name="expandTextButton" format="string" />
+        <attr name="collapseTextButton" format="string" />
+        <attr name="collapseTextButtonColor" format="color" />
+        <attr name="expandTextButtonColor" format="color" />
+        <attr name="highlightTitle" format="string" />
+        <attr name="highlightTitleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="FxAttrs" >
+        <attr name="border">
+            <flag name="top"  value="1"/>
+            <flag name="bottom"  value="2"/>
+            <flag name="left"  value="4"/>
+            <flag name="right"  value="8"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="BorderLinearLayout" parent="FxAttrs" >
+        <attr name="border"/>
+    </declare-styleable>
+    <declare-styleable name="BorderScrollView" parent="FxAttrs" >
+        <attr name="border" />
+    </declare-styleable>
+
+    <declare-styleable name="TextExtraView">
+        <attr name="textExtraGravity">
+            <flag name="top"  value="1"/>
+            <flag name="bottom"  value="2"/>
+            <flag name="left"  value="4"/>
+            <flag name="right"  value="8"/>
+        </attr>
+        <attr name="textExtra" format="string" />
+    </declare-styleable>
+</resources>

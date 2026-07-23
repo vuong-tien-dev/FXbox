@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shorts_content_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom">
+
+    <FrameLayout
+        android:id="@+id/music_thumbnail_wrapper"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shorts_reel_pivot_layer"
+        android:padding="1dp"
+        app:layout_constraintBottom_toTopOf="@id/shorts_bottom_extra_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:srcCompat="@tools:sample/avatars">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/shorts_reel_pivot_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="360dp">
+
+            <ImageView
+                android:id="@+id/shorts_reel_pivot_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/shorts_reel_pivot_anim"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:importantForAccessibility="no" />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/shorts_bottom_extra_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="6dp"
+        android:background="@color/rgb_34_a60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <LinearLayout
+        android:id="@+id/shorts_label_top_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="6dp"
+        android:divider="@drawable/label_top_view_divider"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_author_name_tv"
+        app:layout_constraintEnd_toStartOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toStartOf="@+id/shorts_author_name_tv" />
+
+    <LinearLayout
+        android:id="@+id/shorts_extra_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_music_name_tv"
+        app:layout_constraintEnd_toStartOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toStartOf="@id/shorts_music_note" />
+
+    <com.vtstudio.fxbox.fxviews.textview.VerifiableTextView
+        android:id="@+id/shorts_author_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="6dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/roboto_medium"
+        android:maxWidth="140dp"
+        android:maxLines="1"
+        android:shadowColor="@color/rgb_145"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        android:textColor="@color/white"
+        android:textDirection="ltr"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_description_tv"
+        app:layout_constraintStart_toStartOf="@+id/shorts_music_note"
+        tools:ignore="EllipsizeMaxLines" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/shorts_date_added_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:shadowColor="@color/rgb_48"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        android:textColor="@color/rgb_180"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shorts_author_name_tv"
+        app:layout_constraintEnd_toStartOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toEndOf="@+id/shorts_author_name_tv"
+        app:layout_constraintTop_toTopOf="@+id/shorts_author_name_tv" />
+
+    <ImageView
+        android:id="@+id/shorts_music_note"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="4dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintEnd_toStartOf="@+id/shorts_music_name_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAccessibility="no" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/shorts_music_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="42dp"
+        android:ellipsize="marquee"
+        android:fadingEdgeLength="0dp"
+        android:focusable="true"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="4dp"
+        android:scrollbars="none"
+        android:scrollHorizontally="true"
+        android:shadowColor="@color/rgb_145"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textDirection="ltr"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shorts_music_note"
+        app:layout_constraintEnd_toStartOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toEndOf="@id/shorts_music_note"
+        app:layout_constraintTop_toTopOf="@+id/shorts_music_note" />
+
+    <com.vtstudio.fxbox.fxviews.textview.FxExpandableTextView
+        android:id="@+id/shorts_description_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/tiktok_text_regular"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="4dp"
+        android:maxLines="2"
+        android:requiresFadingEdge="vertical"
+        android:shadowColor="@color/rgb_145"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        android:textColor="@color/white"
+        android:textDirection="ltr"
+        android:textSize="14.2sp"
+        app:animation_duration="250"
+        app:collapseTextButton="@string/view_less"
+        app:expandTextButton="@string/view_more"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_extra_view"
+        app:layout_constraintEnd_toStartOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toStartOf="@id/shorts_music_note"
+        app:maxLinesToScroll="20" />
+
+    <FrameLayout
+        android:id="@+id/shorts_favorite_click_container"
+        android:layout_width="84dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_comment_container"
+        app:layout_constraintEnd_toEndOf="@+id/shorts_comment_container"
+        app:layout_constraintStart_toStartOf="@+id/shorts_comment_container">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/shorts_author_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            app:civ_border_color="@color/white_240"
+            app:civ_border_width="1dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.vtstudio.fxbox.fxviews.FxLottieView
+            android:id="@+id/shorts_favorite_click"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:shadowColor="@color/rgb_145"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="like_blue.json" />
+
+        <TextView
+            android:id="@+id/shorts_like_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/roboto_medium"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/comment_digg_count_default"
+            android:textColor="@color/rgb_240"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/shorts_comment_container"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_share_button"
+        app:layout_constraintEnd_toEndOf="@+id/shorts_share_button"
+        app:layout_constraintStart_toStartOf="@+id/shorts_share_button">
+
+        <ImageView
+            android:id="@+id/shorts_comment_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|center_horizontal"
+            android:shadowColor="@color/rgb_145"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:src="@drawable/comment"
+            app:tint="@color/rgb_240"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/shorts_comment_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:fontFamily="@font/roboto_medium"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/comment_digg_count_default"
+            android:textColor="@color/rgb_240"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/shorts_share_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:shadowColor="@color/rgb_145"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_share_count_tv"
+        app:layout_constraintEnd_toEndOf="@+id/shorts_share_count_tv"
+        app:layout_constraintStart_toStartOf="@+id/shorts_share_count_tv"
+        app:tint="@color/rgb_240"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/shorts_share_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="42dp"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:src="@drawable/shorts_share"
+        android:text="@string/comment_digg_count_default"
+        android:textColor="@color/rgb_240"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintEnd_toEndOf="@+id/music_thumbnail_wrapper"
+        app:layout_constraintStart_toStartOf="@+id/music_thumbnail_wrapper" />
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:ci_height="4dp"
+        app:ci_margin="2dp"
+        app:ci_width="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/shorts_date_added_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

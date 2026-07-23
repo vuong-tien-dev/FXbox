@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"
+        tools:ignore="SelectedPhotoAccess" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_CLIPBOARD" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
+    <application
+        android:name=".FXApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FXbox"
+        tools:targetApi="31">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vtstudio.fxbox.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service android:name=".services.ContentService"
+           android:foregroundServiceType="shortService"/>
+        <service android:name=".media.player.FxPlayer"
+            android:foregroundServiceType="mediaPlayback" />
+        <service android:name=".downloader.FXDownloader"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".media.player.SmartyFloatyService" />
+        <service android:name=".media.player.SmartyFloatyAccessibilityService" />
+
+        <receiver android:name=".broadcast.MediaNotificationTransmitter" />
+        <receiver android:name=".broadcast.ContentTransmitter" />
+        <receiver android:name=".broadcast.PlayerActionReceiver" />
+        <receiver android:name=".broadcast.NetworkChangeReceiver" />
+        <receiver android:name=".broadcast.BluetoothBroadcastReceiver" />
+
+        <activity
+            android:name=".activity.Main"
+            android:configChanges="keyboard|keyboardHidden|orientation|smallestScreenSize|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.PlayVideo"
+            android:configChanges="keyboard|keyboardHidden|orientation|smallestScreenSize|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:resizeableActivity="true"
+            android:windowSoftInputMode="adjustPan"
+            android:supportsPictureInPicture="true"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.Search"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.FXbox" />
+        <activity
+            android:name=".activity.Splash"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.FXbox">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.AllowAccess"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.ShortsUserProfile"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+        <activity
+            android:name=".activity.UserProfile"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.PlaylistVideo"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.PlaylistList"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.SettingActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <activity
+            android:name=".activity.VideoList"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|fontScale|density"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FXbox" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

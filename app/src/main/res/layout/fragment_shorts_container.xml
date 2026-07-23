@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fragment_shorts_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:paddingVertical="10dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/transparent"
+            android:clipToPadding="false"
+            android:fadingEdgeLength="20dp"
+            android:requiresFadingEdge="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/search_bar"
+            app:layout_constraintEnd_toStartOf="@+id/search_bar"
+            app:layout_constraintStart_toEndOf="@+id/picture_in_picture"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable"
+            app:tabPaddingBottom="-4dp"
+            app:tabSelectedTextColor="@color/white"
+            android:tooltipText="@null"
+            app:tabRippleColor="@color/transparent"
+            app:tabTextAppearance="@style/TabTextStyle"
+            android:alpha="0.85"
+            app:tabTextColor="@color/rgb_225_a85"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/search_bar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            app:tint="@color/rgb_240"
+            android:src="@drawable/shorts_icon_search_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/picture_in_picture"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            app:tint="@color/rgb_240"
+            android:src="@drawable/mode_picture_in_picture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

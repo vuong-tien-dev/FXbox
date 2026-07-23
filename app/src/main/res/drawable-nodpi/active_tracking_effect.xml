@@ -1,0 +1,32 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape
+            android:shape="line">
+            <stroke
+                android:color="@color/rgb_34_a60"
+                android:width="@dimen/active_seek_bar_thickness_on"/>
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape
+                android:shape="line">
+                <stroke
+                    android:color="@color/rgb_160_a90"
+                    android:width="@dimen/active_seek_bar_thickness_on"/>
+            </shape>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape
+                android:shape="line">
+                <stroke
+                    android:color="@color/white"
+                    android:width="@dimen/active_seek_bar_thickness_on"/>
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

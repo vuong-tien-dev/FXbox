@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rgb_7">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <com.vtstudio.fxbox.fxviews.BorderToolBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lib_search_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/link_edittext_bg"
+                android:drawableEnd="@drawable/shorts_search_bar_drw"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/gotham_bold"
+                android:gravity="center"
+                android:paddingVertical="6dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/search"
+                android:textColor="@color/rgb_240" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:orientation="horizontal"
+                app:divider="@drawable/hor_3dp_devider"
+                tools:ignore="RtlHardcoded" >
+                <ImageView
+                    android:id="@+id/lib_store_data_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/recovery" />
+                <ImageView
+                    android:id="@+id/lib_setting_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/setting_checked_false" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.vtstudio.fxbox.fxviews.BorderToolBar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.vtstudio.fxbox.fxviews.OnlyVerticalSwipeRefreshLayout
+        android:id="@+id/lib_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lib_history_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:drawableStart="@drawable/history"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/tiktok_display_medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:paddingEnd="6dp"
+                    android:text="@string/history_text"
+                    android:textColor="@color/rgb_240"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lib_playlist_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:drawableStart="@drawable/library_playlist_icon"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/tiktok_display_medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:paddingEnd="6dp"
+                    android:text="@string/playlist_text"
+                    android:textColor="@color/rgb_240"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/lib_view_all_playlist"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lib_history_list"
+                    tools:ignore="RtlSymmetry" />
+
+                <com.vtstudio.fxbox.fxviews.listview.BorderRecyclerView
+                    android:id="@+id/lib_history_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    app:border="bottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lib_history_text" />
+
+                <com.vtstudio.fxbox.fxviews.listview.BorderRecyclerView
+                    android:id="@+id/lib_playlist_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    app:border="bottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lib_playlist_text" />
+
+                <com.vtstudio.fxbox.fxviews.listview.BorderRecyclerView
+                    android:id="@+id/lib_special_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:border="bottom|top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lib_playlist_list" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lib_view_all_playlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/tiktok_display_medium"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/border_shape_180dp"
+                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/view_all"
+                    android:textColor="@color/rgb_240"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/lib_playlist_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/lib_playlist_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.vtstudio.fxbox.fxviews.OnlyVerticalSwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

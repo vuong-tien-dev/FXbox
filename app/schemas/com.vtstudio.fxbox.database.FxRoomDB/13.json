@@ -1,0 +1,1094 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 13,
+    "identityHash": "cea43e399462c96d21a85b3ee1c2c658",
+    "entities": [
+      {
+        "tableName": "fx_media_video",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`fxThumbnailId` TEXT, `fxNotificationLargeIconId` TEXT, `fxDescription` TEXT, `fxAuthorId` INTEGER NOT NULL, `fxMusicId` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `width` INTEGER NOT NULL, `height` INTEGER NOT NULL, `fxId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mediaStoreId` TEXT, `mediaStoreName` TEXT, `mediaStorePath` TEXT, `mediaStoreParent` TEXT, `size` INTEGER NOT NULL, `mediaStoreDayAdded` INTEGER NOT NULL, `isFavorite` INTEGER NOT NULL, `isPrivate` INTEGER NOT NULL, `isLimited` INTEGER NOT NULL, `socialMediaType` INTEGER NOT NULL, `rawResponse` TEXT, `responseServer` TEXT, `timeDownloaded` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "fxThumbnailId",
+            "columnName": "fxThumbnailId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxNotificationLargeIconId",
+            "columnName": "fxNotificationLargeIconId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxDescription",
+            "columnName": "fxDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxAuthorId",
+            "columnName": "fxAuthorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxMusicId",
+            "columnName": "fxMusicId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "width",
+            "columnName": "width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreId",
+            "columnName": "mediaStoreId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreName",
+            "columnName": "mediaStoreName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStorePath",
+            "columnName": "mediaStorePath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreParent",
+            "columnName": "mediaStoreParent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreDayAdded",
+            "columnName": "mediaStoreDayAdded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPrivate",
+            "columnName": "isPrivate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLimited",
+            "columnName": "isLimited",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialMediaType",
+            "columnName": "socialMediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawResponse",
+            "columnName": "rawResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "responseServer",
+            "columnName": "responseServer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeDownloaded",
+            "columnName": "timeDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "fxId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "shorts_user",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`fxId` INTEGER NOT NULL, `uid` TEXT NOT NULL, `uniqueId` TEXT, `nickName` TEXT, `shareUrl` TEXT, `signature` TEXT, `avatarUrl` TEXT, `socialUserType` TEXT, `country` TEXT, `followerCount` INTEGER NOT NULL, `followingCount` INTEGER NOT NULL, `totalFavorite` INTEGER NOT NULL, `verified` INTEGER NOT NULL, `rawResponse` TEXT, `responseServer` TEXT, `timeDownloaded` INTEGER NOT NULL, PRIMARY KEY(`uid`))",
+        "fields": [
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uniqueId",
+            "columnName": "uniqueId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nickName",
+            "columnName": "nickName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shareUrl",
+            "columnName": "shareUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "avatarUrl",
+            "columnName": "avatarUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "socialUserType",
+            "columnName": "socialUserType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "followerCount",
+            "columnName": "followerCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followingCount",
+            "columnName": "followingCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalFavorite",
+            "columnName": "totalFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verified",
+            "columnName": "verified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawResponse",
+            "columnName": "rawResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "responseServer",
+            "columnName": "responseServer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeDownloaded",
+            "columnName": "timeDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "shorts_music",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`fxId` INTEGER NOT NULL, `id` TEXT NOT NULL, `url` TEXT, `title` TEXT, `author` TEXT, `authorId` TEXT, `duration` INTEGER NOT NULL, `rawResponse` TEXT, `responseServer` TEXT, `timeDownloaded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "author",
+            "columnName": "author",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "authorId",
+            "columnName": "authorId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawResponse",
+            "columnName": "rawResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "responseServer",
+            "columnName": "responseServer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeDownloaded",
+            "columnName": "timeDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "shorts_video",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`awemeId` TEXT NOT NULL, `url` TEXT, `shareUrl` TEXT, `fxCloudDatabaseUrl` TEXT, `dynamicCover` TEXT, `description` TEXT, `descriptionTitle` TEXT, `authorId` TEXT, `musicId` TEXT, `likeCount` INTEGER NOT NULL, `commentCount` INTEGER NOT NULL, `shareCount` INTEGER NOT NULL, `playCount` INTEGER NOT NULL, `shortsCreateTime` INTEGER NOT NULL, `isImageList` INTEGER NOT NULL, `imageListPath` TEXT, `imageIdList` TEXT, `region` TEXT, `isWarnAttempt` INTEGER NOT NULL, `warningType` INTEGER NOT NULL, `capcutTemplateId` TEXT, `capcutSchema` TEXT, `anchorPosId` TEXT, `anchorPosKeyword` TEXT, `fxId` INTEGER NOT NULL, `fxThumbnailId` TEXT, `fxNotificationLargeIconId` TEXT, `fxDescription` TEXT, `fxAuthorId` INTEGER NOT NULL, `fxMusicId` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `width` INTEGER NOT NULL, `height` INTEGER NOT NULL, `mediaStoreId` TEXT, `mediaStoreName` TEXT, `mediaStorePath` TEXT, `mediaStoreParent` TEXT, `size` INTEGER NOT NULL, `mediaStoreDayAdded` INTEGER NOT NULL, `isFavorite` INTEGER NOT NULL, `isPrivate` INTEGER NOT NULL, `isLimited` INTEGER NOT NULL, `socialMediaType` INTEGER NOT NULL, `rawResponse` TEXT, `responseServer` TEXT, `timeDownloaded` INTEGER NOT NULL, PRIMARY KEY(`awemeId`))",
+        "fields": [
+          {
+            "fieldPath": "awemeId",
+            "columnName": "awemeId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shareUrl",
+            "columnName": "shareUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxCloudDatabaseUrl",
+            "columnName": "fxCloudDatabaseUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dynamicCover",
+            "columnName": "dynamicCover",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descriptionTitle",
+            "columnName": "descriptionTitle",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "authorId",
+            "columnName": "authorId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "musicId",
+            "columnName": "musicId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "likeCount",
+            "columnName": "likeCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentCount",
+            "columnName": "commentCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shareCount",
+            "columnName": "shareCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playCount",
+            "columnName": "playCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortsCreateTime",
+            "columnName": "shortsCreateTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isImageList",
+            "columnName": "isImageList",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageListPath",
+            "columnName": "imageListPath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageIdList",
+            "columnName": "imageIdList",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isWarnAttempt",
+            "columnName": "isWarnAttempt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "warningType",
+            "columnName": "warningType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capcutTemplateId",
+            "columnName": "capcutTemplateId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "capcutSchema",
+            "columnName": "capcutSchema",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "anchorPosId",
+            "columnName": "anchorPosId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "anchorPosKeyword",
+            "columnName": "anchorPosKeyword",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxThumbnailId",
+            "columnName": "fxThumbnailId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxNotificationLargeIconId",
+            "columnName": "fxNotificationLargeIconId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxDescription",
+            "columnName": "fxDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxAuthorId",
+            "columnName": "fxAuthorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxMusicId",
+            "columnName": "fxMusicId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "width",
+            "columnName": "width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreId",
+            "columnName": "mediaStoreId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreName",
+            "columnName": "mediaStoreName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStorePath",
+            "columnName": "mediaStorePath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreParent",
+            "columnName": "mediaStoreParent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreDayAdded",
+            "columnName": "mediaStoreDayAdded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPrivate",
+            "columnName": "isPrivate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLimited",
+            "columnName": "isLimited",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialMediaType",
+            "columnName": "socialMediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawResponse",
+            "columnName": "rawResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "responseServer",
+            "columnName": "responseServer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeDownloaded",
+            "columnName": "timeDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "awemeId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "comment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `content` TEXT, `uid` TEXT, `mediaVideoId` TEXT, `replyCount` INTEGER NOT NULL, `createTime` INTEGER NOT NULL, `diggCount` INTEGER NOT NULL, `isAuthorDigged` INTEGER NOT NULL, `isReplyComment` INTEGER NOT NULL, `replyId` TEXT, `replyToReplyId` TEXT, `languge` TEXT, `rawResponse` TEXT, `responseServer` TEXT, `timeDownloaded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaVideoId",
+            "columnName": "mediaVideoId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "replyCount",
+            "columnName": "replyCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createTime",
+            "columnName": "createTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diggCount",
+            "columnName": "diggCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAuthorDigged",
+            "columnName": "isAuthorDigged",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isReplyComment",
+            "columnName": "isReplyComment",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "replyId",
+            "columnName": "replyId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "replyToReplyId",
+            "columnName": "replyToReplyId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "languge",
+            "columnName": "languge",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rawResponse",
+            "columnName": "rawResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "responseServer",
+            "columnName": "responseServer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeDownloaded",
+            "columnName": "timeDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "RawResponse",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`responseId` TEXT NOT NULL, `mediaType` INTEGER NOT NULL, `stringResponse` TEXT, PRIMARY KEY(`responseId`))",
+        "fields": [
+          {
+            "fieldPath": "responseId",
+            "columnName": "responseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stringResponse",
+            "columnName": "stringResponse",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "responseId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "playlist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT, `backGroundId` TEXT, `createTime` INTEGER NOT NULL, `description` TEXT, `videoIdList` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "backGroundId",
+            "columnName": "backGroundId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createTime",
+            "columnName": "createTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoIdList",
+            "columnName": "videoIdList",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "yt_video",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT, `description` TEXT, `channelId` TEXT, `shareUrl` TEXT, `quality` TEXT, `likeCount` INTEGER NOT NULL, `commentCount` INTEGER NOT NULL, `playCount` INTEGER NOT NULL, `createTime` INTEGER NOT NULL, `fxId` INTEGER NOT NULL, `fxThumbnailId` TEXT, `fxNotificationLargeIconId` TEXT, `fxDescription` TEXT, `fxAuthorId` INTEGER NOT NULL, `fxMusicId` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `width` INTEGER NOT NULL, `height` INTEGER NOT NULL, `mediaStoreId` TEXT, `mediaStoreName` TEXT, `mediaStorePath` TEXT, `mediaStoreParent` TEXT, `size` INTEGER NOT NULL, `mediaStoreDayAdded` INTEGER NOT NULL, `isFavorite` INTEGER NOT NULL, `isPrivate` INTEGER NOT NULL, `isLimited` INTEGER NOT NULL, `socialMediaType` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "channelId",
+            "columnName": "channelId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shareUrl",
+            "columnName": "shareUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quality",
+            "columnName": "quality",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "likeCount",
+            "columnName": "likeCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentCount",
+            "columnName": "commentCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playCount",
+            "columnName": "playCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createTime",
+            "columnName": "createTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxThumbnailId",
+            "columnName": "fxThumbnailId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxNotificationLargeIconId",
+            "columnName": "fxNotificationLargeIconId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxDescription",
+            "columnName": "fxDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fxAuthorId",
+            "columnName": "fxAuthorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fxMusicId",
+            "columnName": "fxMusicId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "width",
+            "columnName": "width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreId",
+            "columnName": "mediaStoreId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreName",
+            "columnName": "mediaStoreName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStorePath",
+            "columnName": "mediaStorePath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaStoreParent",
+            "columnName": "mediaStoreParent",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaStoreDayAdded",
+            "columnName": "mediaStoreDayAdded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPrivate",
+            "columnName": "isPrivate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLimited",
+            "columnName": "isLimited",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "socialMediaType",
+            "columnName": "socialMediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "yt_user",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`fxId` INTEGER NOT NULL, `channelId` TEXT NOT NULL, `uniqueId` TEXT, `channelName` TEXT, `description` TEXT, `avatarUrl` TEXT, `socialUserType` TEXT, `country` TEXT, `subscriberCount` INTEGER NOT NULL, `totalViewCount` INTEGER NOT NULL, `videoCount` INTEGER NOT NULL, `verified` INTEGER NOT NULL, PRIMARY KEY(`channelId`))",
+        "fields": [
+          {
+            "fieldPath": "fxId",
+            "columnName": "fxId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "channelId",
+            "columnName": "channelId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uniqueId",
+            "columnName": "uniqueId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "channelName",
+            "columnName": "channelName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "avatarUrl",
+            "columnName": "avatarUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "socialUserType",
+            "columnName": "socialUserType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subscriberCount",
+            "columnName": "subscriberCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalViewCount",
+            "columnName": "totalViewCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "videoCount",
+            "columnName": "videoCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verified",
+            "columnName": "verified",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "channelId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cea43e399462c96d21a85b3ee1c2c658')"
+    ]
+  }
+}

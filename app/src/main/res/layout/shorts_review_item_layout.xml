@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="120dp"
+    android:layout_height="180dp">
+
+    <ImageView
+        android:id="@+id/shorts_review_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/author_avt"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp"
+            android:padding="1dp"
+            app:layout_constraintStart_toStartOf="@+id/author_name"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/white"
+            android:shadowDy="1"
+            android:shadowDx="1"
+            android:maxLines="1"
+            android:shadowColor="@color/rgb_34_a60" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

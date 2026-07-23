@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">FXbox</string>
+    <string name="search" translatable="false">Tìm kiếm</string>
+    <string name="download">Trình tải xuống Fx</string>
+    <string name="paste">Dán</string>
+    <string name="edt_download_string">Dán liên kết ở đây</string>
+    <string name="allow_access_title">Yêu cầu cấp quyền</string>
+    <string name="allow_access_content">Để truy cập các phương tiện và sử dụng ứng dụng của bạn một cách đầy đủ,
+        chúng tôi cần được cấp quyền truy cập vào bộ nhớ của thiết bị của bạn. Vui lòng cho phép ứng dụng truy cập vào
+        bộ nhớ của thiết bị khi được yêu cầu để bạn có thể truy cập và sử dụng các phương tiện của mình một cách thuận tiện và dễ dàng. Cảm ơn bạn đã sử dụng ứng dụng của chúng tôi!</string>
+    <string name="positive_button">Mở cài đặt</string>
+    <string name="all_filter">Tất cả</string>
+    <string name="name_filter">Tên</string>
+    <string name="folder_filter">Thư mục hoặc người dùng</string>
+    <string name="display_setting">Hiển thị</string>
+    <string name="theme_setting">Chủ đề</string>
+    <string name="theme_summary_setting">Chọn màu chủ đề của bạn</string>
+    <string name="shuffle_video_setting">Trộn video</string>
+    <string name="shuffle_video_summary_on_setting">Trộn tất cả</string>
+    <string name="shuffle_video_summary_off_setting">Không trộn video</string>
+    <string name="scan_setting">Quét</string>
+    <string name="set_up_password">Thiết lập mật khẩu của bạn</string>
+    <string name="reset_password_setting">Thiết lập lại mật khẩu</string>
+    <string name="data_recovery_confirm">Bạn có chắc chắn muốn khôi phục ?</string>
+    <string name="data_recovery_setting">Khôi phục dữ liệu trước đó</string>
+    <string name="data_recovery_summary_setting">khôi phục dữ liệu trước đó bao gồm mô tả, người dùng, tên nhạc,…</string>
+    <string name="reset_password_summary_setting">Thiết lập lại mật khẩu cho thư mục riêng tư</string>
+    <string name="dark_mode_setting">Chế độ tối</string>
+    <string name="dark_mode_summary_on_setting">Chế độ tối đang bật</string>
+    <string name="dark_mode_summary_off_setting">Chế độ tối đã tắt</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="cancel">Hủy</string>
+    <string name="confirm_password">Xác nhận lại mật khẩu</string>
+    <string name="video_maximum_duration_setting">Thời lượng tối đa của video</string>
+    <string name="video_maximum_duration_summary_setting">Thời lượng tối đa khi quét video (dưới 15 phút)</string>
+    <string name="play_in_background_setting">Phát trong nền</string>
+    <string name="minute">phút</string>
+    <string name="is_empty">Danh sách hiện tại đang trống</string>
+    <string name="download_no_watermark">Tải xuống không hình mờ</string>
+    <string name="download_music">Tải xuống âm nhạc</string>
+    <string name="download_option">Tùy chọn tải xuống</string>
+    <string name="short_player_downloader">Short</string>
+    <string name="link_not_valid">Đường dẫn không hợp lệ</string>
+    <string name="downloaded">Đã tải xuống</string>
+    <string name="contains_music_from">Có chứa nhạc từ: </string>
+    <string name="view_more">Xem thêm</string>
+    <string name="view_less">Thu gọn</string>
+    <string name="rename">Đổi tên</string>
+    <string name="invalid_filename">Tên tệp không thể chứa các kí tự / * ? \ : ! </string>
+    <string name="seconds">giây</string>
+    <string name="minutes">phút</string>
+    <string name="hours">giờ</string>
+    <string name="days">ngày</string>
+    <string name="months">tháng</string>
+    <string name="years">năm</string>
+    <string name="weeks">tuần</string>
+    <string name="ago">trước</string>
+    <string name="value_invalid">giá trị phải nằm trong khoảng 1 > 15 phút</string>
+    <string name="retrieving_data">Đang truy xuất dữ liệu</string>
+    <string name="trying_sever">Đang thử máy chủ </string>
+    <string name="name_exists">Tên này đã tồn tại</string>
+    <string name="invalid_name">Tên không được phép rỗng</string>
+    <string name="move">Di chuyển đến</string>
+    <string name="player_setting">Trình phát</string>
+    <string name="pass_do_not_match">Mã PIN không hợp lệ</string>
+    <string name="enter_pin_code">Nhập mã PIN</string>
+    <string name="data">Dữ liệu</string>
+    <string name="music_player">Trình phát nhạc</string>
+    <string name="always_download_video">Luôn tự động tải video</string>
+    <string name="favorite_btn">Yêu thích</string>
+    <string name="allow_access_btn">Cho phép truy cập</string>
+
+    <!-- Navigation -->
+    <string name="nav_shorts">Shorts</string>
+    <string name="nav_download" translatable="false">Tải xuống</string>
+    <string name="nav_library" translatable="false">Thư viện</string>
+    <string name="nav_setting" translatable="false">Cài đặt</string>
+    <string name="nav_home" translatable="false">Trang chủ</string>
+    <string name="account_nav">Tài khoản</string>
+
+    <!-- Categories -->
+    <string name="category_all">Kết quả có liên quan</string>
+    <string name="category_shorts">Video ngắn</string>
+    <string name="category_storage">Bộ nhớ thiết bị</string>
+    <string name="category_song">Bài hát</string>
+
+    <!-- Search Results -->
+    <string name="search_results_found"> Kết quả tìm kiếm từ </string>
+
+    <!-- Download -->
+    <string name="download_nav">Thêm</string>
+    <string name="confirm_download">Thêm</string>
+    <string name="paste_all"> Dán tất cả</string>
+    <string name="download_desc">Tải xuống của bạn sẽ xuất hiện ở đây</string>
+    <string name="download_title">Tải xuống</string>
+    <string name="download_is_waiting">Đang chờ tải xuống…</string>
+    <string name="download_is_failed">Tải xuống thất bại</string>
+    <string name="download_is_success">Tải xuống hoàn tất</string>
+    <string name="download_is_waiting_network" tools:ignore="TypographyEllipsis">Đang đợi kết nối...</string>
+    <string name="fxplayer_is_running">Trình phát nền đang hoạt động</string>
+
+    <!-- Comments -->
+    <string name="comments">Bình luận</string>
+    <string name="comments_is_none">Chưa có bình luận</string>
+    <string name="download_comments">Tải xuống</string>
+    <string name="cannot_get_comments">Không thể tải bình luận do không tồn tại</string>
+
+    <!-- Server Errors -->
+    <string name="server_errol">Lỗi máy chủ </string>
+    <string name="try_again">Thử lại</string>
+
+    <!-- Load More -->
+    <string name="load_more">Xem thêm </string>
+
+    <!-- Replies -->
+    <string name="view_more_replies">Xem %d câu trả lời</string>
+    <string name="replies_is_none" >Chưa có câu trả lời nào</string>
+    <string name="replies">Trả lời</string>
+
+    <!-- Data Retrieval -->
+    <string name="is_get_data_from_server" tools:ignore="TypographyEllipsis">Đang lấy dữ liệu từ server...</string>
+    <string name="get_data_success">Lấy dữ liệu hoàn tất</string>
+    <string name="get_data_img_failed">Trích xuất tài nguyên ảnh thất bại</string>
+    <string name="get_server_data_failed">Máy chủ không phản hồi hoặc dữ liệu không tồn tại</string>
+    <string name="get_data_api_failed">Trích xuất thông tin dữ liệu thất bại</string>
+    <string name="getting_data_img" tools:ignore="TypographyEllipsis">Đang trích xuất tài nguyên ảnh...</string>
+    <string name="getting_data_api" tools:ignore="TypographyEllipsis">Đang trích xuất thông tin dữ liệu...</string>
+
+    <!-- Download Bot -->
+    <string name="download_bot_summary">Click vào nút dán để bắt đầu tải xuống</string>
+
+    <!-- Author -->
+    <string name="author">· Tác giả</string>
+
+    <!-- Profile Counts -->
+    <string name="following_count">%1$s Đang theo dõi</string>
+    <string name="follower_count">%1$s Người theo dõi</string>
+
+    <!-- User Information -->
+    <string name="user_name">Tên người dùng: %1$s</string>
+    <string name="total_favorited">Tổng số yêu thích: %1$s</string>
+    <string name="signature">Chữ ký: %1$s</string>
+    <string name="user_unique_id">ID: @%1$s</string>
+
+    <!-- User Video List -->
+    <string name="user_video_list_of">"Danh sách video của %1$s"</string>
+
+    <!-- History and Favorites -->
+    <string name="history_text">Đã xem gần đây</string>
+    <string name="favorite_list">Danh sách yêu thích</string>
+    <string name="limit_list">Danh sách bị hạn chế</string>
+
+    <!-- PlaylistVideo -->
+    <string name="playlist_text">Danh sách phát</string>
+
+    <!-- Profile Section -->
+    <string name="profile_following_count">Đang theo dõi</string>
+    <string name="profile_follower_count">Người theo dõi</string>
+    <string name="profile_total_favorited">Lượt thích</string>
+
+    <!-- Miscellaneous -->
+    <string name="shuffle">Trộn bài</string>
+    <string name="sync_data">Đồng bộ</string>
+    <string name="add_to_collection">Sưu tập</string>
+    <string name="copy_to_clip_successfully">Sao chép thành công</string>
+    <string name="enter_search_content">Nhập nội dung liên quan</string>
+    <string name="failed">Thất bại</string>
+    <string name="data_exists">Đã tải xuống trước đó</string>
+    <string name="for_you">Dành cho bạn</string>
+    <string name="clear_download_item_cache">Toàn bộ danh sách đã được dọn khỏi bộ nhớ RAM</string>
+    <string name="action_mute">Tắt âm thanh</string>
+    <string name="action_capture">Chụp khoảng khắc trong video</string>
+    <string name="action_auto_swipe">Tự động lướt</string>
+    <string name="action_see_properties">Thuộc tính</string>
+    <string name="action_limit">Hạn chế phương tiện này</string>
+    <string name="action_unmute">Bỏ tắt âm thanh</string>
+    <string name="cloud">Kho lưu trữ</string>
+    <string name="connect_errol">Không thể kết nối đến máy chủ, vui lòng thử lại sau</string>
+    <string name="tap_to_try_again">Nhấn vào thử lại để tải lại</string>
+    <string name="warn_limit_action">Phương tiện bị giới hạn sẽ không xuất hiện trong mục dành cho bạn. Bạn có chắc sẽ giới hạn mục này ?</string>
+    <string name="action_unlimit">Bỏ giới hạn phương tiện này</string>
+    <string name="action_disable_auto_swipe">Tắt chế độ tự động vuốt</string>
+    <string name="action_enter_window_video_mode">Mở cửa sổ phát nổi</string>
+    <string name="cannot_enter_video_window_mode">Không thể mở cửa sổ nổi do chưa cấp quyền, vui lòng kích hoạt quyền</string>
+    <string name="limited_success">Đã giới hạn phương tiện thành công!</string>
+    <string name="remove_limited_success">Đã bỏ giới hạn phương tiện thành công!</string>
+    <string name="action_sync_data">Đồng bộ dữ liệu (lượt thích, bình luận, …)</string>
+    <string name="action_delete">Xóa phương tiện khỏi bộ nhớ</string>
+    <string name="delete_successfully">Xóa phuương tiện thành công</string>
+    <string name="delete_failed">Lỗi khi xóa phương tiện này</string>
+    <string name="warn_delete_action">Bạn có chắc chắn xóa vĩnh viễn phương tiện này ?</string>
+    <string name="empty">rỗng</string>
+    <string name="please_wait">Vui lòng đợi</string>
+    <string name="photo">Hình ảnh</string>
+    <string name="warn_do_not_attempt">Các hành động trong video được thực hiện bởi chuyên gia hoặc chuyên gia có giám sát. Vui lòng không thử thực hiện</string>
+    <string name="capcut_desc">CapCut · Thử mẫu này</string>
+    <string name="cannot_launch_acitivity">Lỗi trong quá trình khởi động capcut</string>
+    <string name="warn_before_viewing">Nội dung trong video có thể gây khó chịu. Vui lòng cân nhắc trước khi xem.</string>
+    <string name="is_sync_data">Đang đồng bộ dữ liệu</string>
+    <string name="low_memory">Ứng dụng đang bị thiếu bộ nhớ. Để tránh dừng đột ngột, vui lòng đóng đa nhiệm ứng dụng và vào trình dọn rác để giải phóng bộ nhớ</string>
+    <string name="description_hint">Nhập mô tả cho danh sách phát này</string>
+    <string name="favorite_playlist_desc">Đây là danh sách phát video yêu thích được tạo mặc định bởi ứng dụng.</string>
+    <string name="properties">Thuộc tính</string>
+    <string name="fx_id">id</string>
+    <string name="media_type">Loại</string>
+    <string name="media_type_photo_list">Danh sách ảnh</string>
+    <string name="media_type_shorts_video">Video ngắn</string>
+    <string name="size">Kích thước</string>
+    <string name="duration">Thời lượng</string>
+    <string name="is_limted">Bị giới hạn</string>
+    <string name="device_video">Video từ thiết bị</string>
+    <string name="day_added">Ngày thêm vào</string>
+    <string name="view_all">Xem tất cả</string>
+    <string name="enter_playlist_name">Nhập vào tên danh sách</string>
+    <string name="add_new_playlist">Tạo danh sách phát mới</string>
+    <string name="enter_playlist_desc">Nhập mô tả cho danh sách</string>
+    <string name="action_add_to_playlist">Thêm vào danh sách phát</string>
+    <string name="complete">Xong</string>
+    <string name="backup">Sao lưu</string>
+    <string name="download_more">Tải thêm</string>
+    <string name="is_in_downloading">Đang trong danh sách tải xuống</string>
+    <string name="failed_get_music_thumb">Không thể tải ảnh thu nhỏ cho bài hát</string>
+    <string name="choose_quality">Chọn chất lượng</string>
+    <string name="submit">Xác nhận</string>
+    <string name="views">lượt xem</string>
+    <string name="recommend">Đề xuất</string>
+    <string name="backup_content">Toàn bộ dữ liệu như video, hình ảnh,... của bạn sẽ được lưu trong thư mục backup trong thư mục android của ứng dụng?</string>
+    <string name="limit_video">Video bị giới hạn</string>
+    <string name="limit_warning">Video này đã bị giới hạn, bạn vẫn muốn xem nó chứ?</string>
+    <string name="still_view">Vẫn xem</string>
+    <string name="setting_general">Tổng quan</string>
+    <string name="setting_player">Trình phát</string>
+    <string name="setting_shorts">Video ngắn</string>
+    <string name="setting_information">Thông tin</string>
+    <string name="setting">Thiết lập</string>
+    <string name="setting_summary_general">Hình ảnh thu nhỏ, sử dụng dữ liệu, bộ nhớ,...</string>
+    <string name="setting_summary_player">Phát trong nền, bluetooth,...</string>
+    <string name="setting_summary_shorts">Kiểm soát thời gian sử dụng màn hình, cuộn tự động,...</string>
+    <string name="setting_summary_information">Về ứng dụng này, bản quyền,...</string>
+    <string name="setting_general_display">Hiển thị</string>
+    <string name="setting_general_display_color_scheme">Bảng màu</string>
+    <string name="setting_general_display_language">Ngôn ngữ</string>
+
+    <string-array name="setting_general_display_color_scheme_entries">
+        <item>Mặc định hệ thống</item>
+        <item>Sáng</item>
+        <item>Tối</item>
+    </string-array>
+
+    <string-array name="setting_general_display_language">
+        <item>Tiếng Anh</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+    <string name="action_adjust_volume">Tăng âm lượng</string>
+
+</resources>

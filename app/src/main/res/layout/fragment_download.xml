@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/download_fragment_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/rgb_15"
+        tools:context=".fragments.Download">
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/download_title"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="36dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:fontFamily="@font/tiktok_text_bold"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:text="@string/download_title"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="18sp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/download_editor_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/download_lay_bg"
+            android:paddingBottom="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/download_link_edittext_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/link_edittext_bg"
+                android:weightSum="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.152">
+
+                <EditText
+                    android:id="@+id/download_link_edittext"
+                    style="@style/SearchBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:background="@color/transparent"
+                    android:focusable="false"
+                    android:fontFamily="@font/tiktok_display_regular"
+                    android:hint="@string/edt_download_string"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:paddingStart="20dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_240"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/left_editor_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="12dp"
+                        android:src="@drawable/paste_editor_icon"
+                        app:tint="@color/white" />
+
+                    <ProgressBar
+                        android:id="@+id/download_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/white"
+                        android:indeterminateTintMode="src_in"
+                        android:padding="12dp"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/download_paste"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/paste_btn_bg"
+                android:fontFamily="@font/tiktok_text_bold"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:text="@string/paste"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/download_link_edittext_container"
+                app:layout_constraintStart_toStartOf="@+id/download_link_edittext_container"
+                app:layout_constraintTop_toBottomOf="@+id/download_link_edittext_container" />
+
+            <com.vtstudio.fxbox.fxviews.VirtualAssistantView
+                android:id="@+id/download_status_bot"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/download_paste"
+                app:layout_constraintTop_toBottomOf="@+id/download_paste"
+                app:lottie_autoPlay="false">
+
+            </com.vtstudio.fxbox.fxviews.VirtualAssistantView>
+
+            <TextView
+                android:id="@+id/download_status_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="4dp"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/tiktok_display_medium"
+                android:gravity="center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:scrollbars="none"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/download_bot_summary"
+                android:textColor="@color/virtual_bot_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/download_status_bot"
+                app:layout_constraintEnd_toEndOf="@id/download_paste"
+                app:layout_constraintStart_toEndOf="@+id/download_status_bot"
+                app:layout_constraintTop_toTopOf="@+id/download_status_bot"
+                tools:ignore="UseCompatTextViewDrawableXml"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/download_item_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/download_editor_container"
+            android:orientation="vertical">
+
+            <com.vtstudio.fxbox.fxviews.listview.VideoQualityListView
+                android:id="@+id/video_quality_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="6dp"
+                android:visibility="gone"
+                android:paddingVertical="6dp"
+                android:layout_gravity="top"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/download_item_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:id="@+id/download_status_none_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/download_desc_img"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/download_desc_img" />
+
+                    <TextView
+                        android:id="@+id/download_desc_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="250dp"
+                        android:fontFamily="@font/tiktok_display_medium"
+                        android:text="@string/download_desc"
+                        android:textColor="@color/rgb_145"
+                        android:textSize="15sp" />
+                </FrameLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

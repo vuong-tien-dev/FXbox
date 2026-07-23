@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:paddingBottom="10dp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/comment_load_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="marquee"
+        android:text="@string/load_more"
+        android:paddingEnd="6dp"
+        android:paddingStart="0dp"
+        android:gravity="center_vertical"
+        android:drawableEnd="@drawable/comment_load_more_icon"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:textSize="16sp"
+        android:drawablePadding="4dp"
+        android:textColor="@color/white"/>
+
+    <com.vtstudio.fxbox.fxviews.progressbar.FxLoadingView
+        android:id="@+id/comment_load_more_bar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</FrameLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="itemTextAppearanceInactive">
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/red_hat_text</item>
+    </style>
+
+    <style name="itemTextAppearanceActive">
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/red_hat_text_bold</item>
+    </style>
+
+    <style name="BottomNavigationIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary</item>
+    </style>
+
+    <style name="FadingBottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:requiresFadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">20dp</item>
+    </style>
+
+    <style name="Widget.Theme.FXbox.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="SearchBar" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/tiktok_display_medium</item>
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor_drw</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@null</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="hintTextColor">@color/rgb_145</item>
+        <item name="android:textColor">@color/white_240</item>
+        <item name="android:fontFamily">@font/tiktok_display_medium</item>
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor_drw</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TransparentBottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+</resources>

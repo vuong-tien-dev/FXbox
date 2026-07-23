@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:focusable="true"
+    android:clickable="true"
+    android:paddingBottom="16dp">
+
+    <FrameLayout
+        android:id="@+id/thumbnail_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/video_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:id="@+id/video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="6dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/corner_4_rgb_20_a60"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnail_wrapper"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/video_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Youtube video"
+        android:textColor="@color/white"
+        android:textSize="14.5sp"
+        app:layout_constraintEnd_toStartOf="@+id/media_item_show_more"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar" />
+
+    <TextView
+        android:id="@+id/video_caption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="user"
+        android:textColor="@color/rgb_180"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/video_title"
+        app:layout_constraintStart_toStartOf="@+id/video_title"
+        app:layout_constraintTop_toBottomOf="@id/video_title" />
+
+    <ImageView
+        android:id="@+id/media_item_show_more"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/media_item_icon_show_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnail_wrapper" />
+</androidx.constraintlayout.widget.ConstraintLayout>

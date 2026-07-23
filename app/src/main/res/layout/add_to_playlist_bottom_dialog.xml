@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:padding="6dp"
+    android:paddingBottom="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_black_red_dark">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="36dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_corner_rect_180dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/roboto"
+                android:maxLines="1"
+                android:text="@string/action_add_to_playlist"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/new_playlist_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/indicator" />
+
+            <ImageView
+                android:id="@+id/new_playlist_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/add_32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/new_playlist"
+                app:layout_constraintEnd_toStartOf="@+id/new_playlist"
+                app:layout_constraintTop_toTopOf="@+id/new_playlist"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/new_playlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/roboto"
+                android:maxLines="2"
+                android:text="@string/add_new_playlist"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <com.vtstudio.fxbox.fxviews.listview.BorderRecyclerView
+                android:id="@+id/playlist_list"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:paddingVertical="4dp"
+                app:border="top|bottom"
+                app:layout_constraintBottom_toTopOf="@+id/complete_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <ImageView
+                android:id="@+id/complete_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/success_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/rgb_240" />
+
+            <TextView
+                android:id="@+id/complete_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto"
+                android:maxLines="2"
+                android:text="@string/complete"
+                android:textColor="@color/rgb_240"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/complete_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/complete_icon"
+                app:layout_constraintTop_toTopOf="@+id/complete_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

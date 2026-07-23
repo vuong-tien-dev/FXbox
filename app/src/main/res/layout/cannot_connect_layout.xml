@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/errol_icon"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="160dp"
+        android:src="@drawable/reload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/errol_text"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:gravity="center_horizontal"
+        android:text="@string/connect_errol"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/errol_icon"
+        app:layout_constraintStart_toStartOf="@+id/errol_icon"
+        app:layout_constraintTop_toBottomOf="@+id/errol_icon" />
+
+    <TextView
+        android:id="@+id/errol_subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:text="@string/tap_to_try_again"
+        android:textColor="@color/rgb_145"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/errol_text"
+        app:layout_constraintStart_toStartOf="@+id/errol_text"
+        app:layout_constraintTop_toBottomOf="@+id/errol_text" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/retry_button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/try_again_background_drw"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:gravity="center"
+        android:paddingVertical="6dp"
+        android:text="@string/try_again"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errol_subtext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

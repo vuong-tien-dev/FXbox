@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/comment_user_avatar"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="0.1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/comment_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:ellipsize="marquee"
+        android:textDirection="ltr"
+        android:fontFamily="@font/tiktok_text_bold"
+        android:maxLines="2"
+        android:textColor="@color/rgb_145"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_avatar"
+        app:layout_constraintTop_toTopOf="@+id/comment_user_avatar" />
+
+    <TextView
+        android:id="@+id/comment_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:textDirection="ltr"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/tiktok_text_medium"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/comment_user_name" />
+
+    <TextView
+        android:id="@+id/comment_digg_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:drawableStart="@drawable/comment_digg_count_icon"
+        android:drawableTint="@color/digg_count_tint"
+        android:drawablePadding="6dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/gotham_bold"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="@string/comment_digg_count_default"
+        android:textColor="@color/rgb_145"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="UseCompatTextViewDrawableXml" />
+
+    <TextView
+        android:id="@+id/comment_create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/tiktok_display_medium"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:textColor="@color/rgb_145"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/comment_content" />
+
+    <TextView
+        android:id="@+id/comment_view_replies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="64dp"
+        android:drawablePadding="4dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/tiktok_text_bold"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:text="@string/view_more_replies"
+        android:textColor="@color/theme_green_teal_alt"
+        android:textSize="13sp"
+        android:visibility="gone"
+        android:drawableEnd="@drawable/comment_load_more_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/comment_create_time"
+        tools:ignore="UseCompatTextViewDrawableXml" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

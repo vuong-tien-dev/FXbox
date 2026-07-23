@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="inactive_seek_bar_thickness">2dp</dimen>
+    <dimen name="active_seek_bar_thickness_on">4dp</dimen>
+    <dimen name="dms_32_dp">32</dimen>
+</resources>

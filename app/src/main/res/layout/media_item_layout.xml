@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:padding="10dp"
+    android:paddingStart="20dp"
+    android:background="@drawable/selected_drw"
+    tools:ignore="RtlSymmetry">
+
+    <ImageView
+        android:id="@+id/media_item_thumbnail"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:padding="1dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/media_item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/tiktok_display_bold"
+        android:maxLines="1"
+        android:textDirection="ltr"
+        android:text="name_video"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/media_item_show_more"
+        app:layout_constraintStart_toEndOf="@+id/media_item_thumbnail"
+        app:layout_constraintTop_toTopOf="@+id/media_item_thumbnail"
+        tools:ignore="EllipsizeMaxLines" />
+
+    <TextView
+        android:id="@+id/media_item_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textDirection="ltr"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/gotham_bold"
+        android:textColor="@color/rgb_180"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/media_day_added"
+        app:layout_constraintStart_toStartOf="@+id/media_item_name"
+        app:layout_constraintTop_toBottomOf="@+id/media_item_name" />
+
+    <TextView
+        android:id="@+id/media_day_added"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_bold"
+        android:textColor="@color/rgb_180"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/media_item_thumbnail"
+        app:layout_constraintEnd_toEndOf="@+id/media_item_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/media_item_name" />
+
+    <ImageView
+        android:id="@+id/media_item_show_more"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/media_item_icon_show_more"
+        app:layout_constraintBottom_toBottomOf="@+id/media_item_thumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/media_item_thumbnail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
