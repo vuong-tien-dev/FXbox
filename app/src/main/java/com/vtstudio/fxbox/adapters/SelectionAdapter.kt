@@ -106,6 +106,11 @@ class SelectionAdapter(selections: ArrayList<Int>) :
                 imageResourceId = R.drawable.action_see_properties
                 stringResourceId = R.string.action_see_properties
             }
+
+            FxVideoSelectionDialog.ACTION_EXPORT -> {
+                imageResourceId = R.drawable.action_export
+                stringResourceId = R.string.action_export
+            }
         }
 
         Glide.with(context).load(imageResourceId).skipMemoryCache(true)

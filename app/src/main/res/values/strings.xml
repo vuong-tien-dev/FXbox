@@ -196,6 +196,17 @@ video in your device. Allow access and we are ready to go.</string>
     <string name="action_auto_swipe">Turn on mode auto swipe</string>
     <string name="action_limit">Limit this media</string>
     <string name="action_see_properties">Properties</string>
+    <string name="action_export">Export to device folder</string>
+    <string name="export_success">Exported to %1$s</string>
+    <string name="export_failed">Cannot export this media</string>
+    <string name="export_slideshow">Export slideshow</string>
+    <string name="export_music">Export music</string>
+    <string name="export_images">Select images to export</string>
+    <string name="select_images_to_export">Select images to export</string>
+    <string name="export_selected_images">Export selected</string>
+    <string name="select_at_least_one_image">Select at least one image</string>
+    <string name="back">Back</string>
+    <string name="export_images_success">Exported %1$d images to %2$s</string>
     <string name="action_unmute">Unmute</string>
     <string name="cloud">Cloud</string>
     <string name="connect_errol">Cannot connect to server, please try again later</string>
@@ -266,6 +277,13 @@ video in your device. Allow access and we are ready to go.</string>
     <string name="action_adjust_volume">Enhance volume</string>
     <string name="add_new_media_segment">New segment</string>
     <string name="action_change_media_segment">Select segment to play</string>
+    <string name="create_segment_title">Create playback segment</string>
+    <string name="segment_name_hint">Segment name</string>
+    <string name="save_segment">Save segment</string>
+    <string name="segment_name_invalid">Enter at least two characters for the segment name</string>
+    <string name="segment_range_invalid">The end time must be after the start time</string>
+    <string name="segment_range">%1$s – %2$s</string>
+    <string name="delete_segment">Delete segment</string>
 
     <!--    settings strings   -->
     <string-array name="setting_general_display_color_scheme_entries">

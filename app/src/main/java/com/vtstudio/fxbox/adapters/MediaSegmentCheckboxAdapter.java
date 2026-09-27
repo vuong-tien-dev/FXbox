@@ -1,21 +1,22 @@
 package com.vtstudio.fxbox.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.vtstudio.fxbox.databinding.CheckboxItemBinding;
+import com.vtstudio.fxbox.database.FxRoomDB;
+import com.vtstudio.fxbox.databinding.MediaSegmentItemBinding;
 import com.vtstudio.fxbox.media.models.FxMediaVideo;
 import com.vtstudio.fxbox.media.models.MediaSegment;
-import com.vtstudio.fxbox.media.models.tiktok.Playlist;
+import com.vtstudio.fxbox.utils.TimeUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MediaSegmentCheckboxAdapter extends RecyclerView.Adapter<MediaSegmentCheckboxAdapter.MediaSegmentCheckboxHolder> {
-    private List<MediaSegment> mediaSegmentList;
+public class MediaSegmentCheckboxAdapter extends RecyclerView.Adapter<MediaSegmentCheckboxAdapter.MediaSegmentHolder> {
+    private final List<MediaSegment> mediaSegmentList;
     private final FxMediaVideo media;
 
     public MediaSegmentCheckboxAdapter(@NonNull FxMediaVideo media, @NonNull List<MediaSegment> mediaSegmentList) {
@@ -23,66 +24,65 @@ public class MediaSegmentCheckboxAdapter extends RecyclerView.Adapter<MediaSegme
         this.media = media;
     }
 
-    public List<MediaSegment> getMediaSegmentList() {
-        return mediaSegmentList;
-    }
-
-    public void setMediaSegmentList(List<MediaSegment> mediaSegmentList) {
-        this.mediaSegmentList = mediaSegmentList;
-    }
-
     public long getCurrentSegmentId() {
         return media.getMediaSegmentId();
     }
 
-    public void setCurrentSegmentId(long currentSegmentId) {
-        this.media.setMediaSegmentId(currentSegmentId);
-    }
-
     private void changeCurrentSegment(MediaSegment segment) {
-        media.setMediaSegmentId(segment == null? 0 : segment.getId());
+        media.setMediaSegmentId(segment == null ? -1 : segment.getId());
         media.setCurrentSegment(segment);
     }
 
     @NonNull
     @Override
-    public MediaSegmentCheckboxAdapter.MediaSegmentCheckboxHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CheckboxItemBinding binding = CheckboxItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new MediaSegmentCheckboxHolder(binding);
+    public MediaSegmentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MediaSegmentHolder(MediaSegmentItemBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MediaSegmentCheckboxAdapter.MediaSegmentCheckboxHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MediaSegmentHolder holder, int position) {
         MediaSegment segment = mediaSegmentList.get(position);
-        holder.mediaSegmentId = segment.getId();
         holder.binding.checkbox.setOnCheckedChangeListener(null);
         holder.binding.checkbox.setChecked(getCurrentSegmentId() == segment.getId());
+        holder.binding.segmentTitle.setText(segment.getTitle());
+        holder.binding.segmentRange.setText(holder.itemView.getContext().getString(
+                com.vtstudio.fxbox.R.string.segment_range,
+                TimeUtils.formatDuration(segment.getStartTime()),
+                TimeUtils.formatDuration(segment.getEndTime())));
 
         holder.binding.checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            final int checkedChangePosition = holder.getBindingAdapterPosition();
-            if (checkedChangePosition != RecyclerView.NO_POSITION &&
-                    checkedChangePosition < mediaSegmentList.size()) {
-                MediaSegment mediaSegment = mediaSegmentList.get(checkedChangePosition);
-                long id = mediaSegment.getId();
+            int changedPosition = holder.getBindingAdapterPosition();
+            if (changedPosition == RecyclerView.NO_POSITION) return;
 
-                if (isChecked) {
-                    long previousSegmentId = getCurrentSegmentId();
-                    changeCurrentSegment(mediaSegment);
-                    if (previousSegmentId != id) {
-                        notifyItemChanged(getPositionById(previousSegmentId));
-                    }
-                    notifyItemChanged(checkedChangePosition);
-                } else {
-                    if (id == getCurrentSegmentId()) {
-                        changeCurrentSegment(null);
-                    } else {
-                        notifyItemChanged(checkedChangePosition);
-                    }
+            if (isChecked) {
+                long previousSegmentId = getCurrentSegmentId();
+                changeCurrentSegment(mediaSegmentList.get(changedPosition));
+                int previousPosition = getPositionById(previousSegmentId);
+                if (previousPosition != RecyclerView.NO_POSITION) {
+                    notifyItemChanged(previousPosition);
                 }
+            } else if (segment.getId() == getCurrentSegmentId()) {
+                changeCurrentSegment(null);
             }
+            notifyItemChanged(changedPosition);
         });
 
-        holder.binding.name.setText(segment.getTitle());
+        holder.itemView.setOnClickListener(v -> holder.binding.checkbox.toggle());
+        holder.binding.deleteSegment.setOnClickListener(v -> deleteSegment(holder));
+    }
+
+    private void deleteSegment(@NonNull MediaSegmentHolder holder) {
+        int position = holder.getBindingAdapterPosition();
+        if (position == RecyclerView.NO_POSITION) return;
+
+        MediaSegment segment = mediaSegmentList.get(position);
+        if (segment.getId() == getCurrentSegmentId()) {
+            changeCurrentSegment(null);
+        }
+        FxRoomDB.get(holder.itemView.getContext()).mediaSegmentDao().delete(segment);
+        mediaSegmentList.remove(position);
+        notifyItemRemoved(position);
     }
 
     private int getPositionById(long id) {
@@ -95,21 +95,14 @@ public class MediaSegmentCheckboxAdapter extends RecyclerView.Adapter<MediaSegme
     }
 
     @Override
-    public void onViewRecycled(@NonNull MediaSegmentCheckboxHolder holder) {
-        holder.mediaSegmentId = -1;
-    }
-
-    @Override
     public int getItemCount() {
         return mediaSegmentList.size();
     }
 
+    static class MediaSegmentHolder extends RecyclerView.ViewHolder {
+        final MediaSegmentItemBinding binding;
 
-    public static class MediaSegmentCheckboxHolder extends RecyclerView.ViewHolder {
-        final CheckboxItemBinding binding;
-        private long mediaSegmentId;
-
-        public MediaSegmentCheckboxHolder(@NonNull CheckboxItemBinding binding) {
+        MediaSegmentHolder(@NonNull MediaSegmentItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

@@ -1,8 +1,14 @@
 package com.vtstudio.fxbox.media;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -43,6 +49,11 @@ import com.vtstudio.fxbox.utils.FileUtils;
 import com.vtstudio.fxbox.utils.ListUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -122,6 +133,138 @@ public class MediaManger {
 
     public static void syncShortsTiktokData(@NonNull Context context, @NonNull ShortsVideo mShortsItem, @NonNull ShortsListAdapter adapter, @NonNull ShortsListAdapter.ShortsItem holder) {
         syncShortsTiktokData(context, mShortsItem, adapter, FxRoomDB.get(context).shortsVideoDao(), holder);
+    }
+
+    public static void exportMediaToPublicFolder(@NonNull Context context, @NonNull Media media) {
+        File source = new File(media.getMediaStorePath());
+        if (!source.isFile()) {
+            SweetToast.error(context, context.getString(R.string.export_failed));
+            return;
+        }
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                String exportedDirectory = exportToPublicFolder(context, source);
+                new Handler(Looper.getMainLooper()).post(() ->
+                        SweetToast.success(context, context.getString(R.string.export_success, exportedDirectory)));
+            } catch (IOException | SecurityException exception) {
+                Log.e("MediaManager", "Cannot export media: " + source.getAbsolutePath(), exception);
+                new Handler(Looper.getMainLooper()).post(() ->
+                        SweetToast.error(context, context.getString(R.string.export_failed)));
+            }
+        });
+        executor.shutdown();
+    }
+
+    public static void exportImageFilesToPublicFolder(@NonNull Context context, @NonNull List<File> sources) {
+        if (sources.isEmpty()) {
+            SweetToast.error(context, context.getString(R.string.export_failed));
+            return;
+        }
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            int exportedCount = 0;
+            String exportedDirectory = Environment.DIRECTORY_PICTURES + File.separator + "FXbox";
+            for (File source : sources) {
+                try {
+                    exportToPublicFolder(context, source, true);
+                    exportedCount++;
+                } catch (IOException | SecurityException exception) {
+                    Log.e("MediaManager", "Cannot export image: " + source.getAbsolutePath(), exception);
+                }
+            }
+
+            int finalExportedCount = exportedCount;
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (finalExportedCount > 0) {
+                    SweetToast.success(context, context.getString(
+                            R.string.export_images_success, finalExportedCount, exportedDirectory));
+                } else {
+                    SweetToast.error(context, context.getString(R.string.export_failed));
+                }
+            });
+        });
+        executor.shutdown();
+    }
+
+    @NonNull
+    private static String exportToPublicFolder(@NonNull Context context, @NonNull File source) throws IOException {
+        return exportToPublicFolder(context, source, false);
+    }
+
+    @NonNull
+    private static String exportToPublicFolder(@NonNull Context context, @NonNull File source, boolean isImage) throws IOException {
+        boolean isAudio = !isImage && isAudioFile(source.getName());
+        String directory = isImage ? Environment.DIRECTORY_PICTURES
+                : isAudio ? Environment.DIRECTORY_MUSIC : Environment.DIRECTORY_MOVIES;
+        String relativePath = directory + File.separator + "FXbox";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.MediaColumns.DISPLAY_NAME, source.getName());
+            values.put(MediaStore.MediaColumns.MIME_TYPE,
+                    isImage ? "image/*" : isAudio ? "audio/*" : "video/*");
+            values.put(MediaStore.MediaColumns.RELATIVE_PATH, relativePath);
+            values.put(MediaStore.MediaColumns.IS_PENDING, 1);
+
+            ContentResolver resolver = context.getContentResolver();
+            Uri collection = isImage
+                    ? MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                    : isAudio
+                    ? MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                    : MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+            Uri destination = resolver.insert(collection, values);
+            if (destination == null) {
+                throw new IOException("Cannot create exported media entry");
+            }
+
+            try (InputStream input = new FileInputStream(source);
+                 OutputStream output = resolver.openOutputStream(destination)) {
+                if (output == null) {
+                    throw new IOException("Cannot open exported media output stream");
+                }
+                copy(input, output);
+            } catch (IOException exception) {
+                resolver.delete(destination, null, null);
+                throw exception;
+            }
+
+            values.clear();
+            values.put(MediaStore.MediaColumns.IS_PENDING, 0);
+            resolver.update(destination, values, null, null);
+            return relativePath;
+        }
+
+        File exportDirectory = new File(Environment.getExternalStoragePublicDirectory(directory), "FXbox");
+        if (!exportDirectory.exists() && !exportDirectory.mkdirs()) {
+            throw new IOException("Cannot create export directory");
+        }
+
+        File destination = new File(exportDirectory, source.getName());
+        try (InputStream input = new FileInputStream(source);
+             OutputStream output = new FileOutputStream(destination)) {
+            copy(input, output);
+        }
+        return exportDirectory.getAbsolutePath();
+    }
+
+    private static boolean isAudioFile(@NonNull String fileName) {
+        String lowerCaseName = fileName.toLowerCase(Locale.ROOT);
+        return lowerCaseName.endsWith(".mp3")
+                || lowerCaseName.endsWith(".m4a")
+                || lowerCaseName.endsWith(".aac")
+                || lowerCaseName.endsWith(".wav")
+                || lowerCaseName.endsWith(".ogg");
+    }
+
+    private static void copy(@NonNull InputStream input, @NonNull OutputStream output) throws IOException {
+        byte[] buffer = new byte[8192];
+        int read;
+        while ((read = input.read(buffer)) != -1) {
+            output.write(buffer, 0, read);
+        }
     }
 
     public static void deleteMedia(@NonNull Media media, @NonNull Context context, @Nullable OnDeletionResultListener listener) {

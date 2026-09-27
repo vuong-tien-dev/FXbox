@@ -192,8 +192,9 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         mZoomableView.setLayoutParams(new ViewGroup.LayoutParams(mTarget.getWidth(), mTarget.getHeight()));
         mZoomableView.setImageBitmap(ViewUtils.getBitmapFromView(view));
 
-        //show the view in the same coords
-        mTargetViewCords = ViewUtils.getViewAbsoluteCords(view);
+        // The zoom overlay is attached to decorView, so its position must use
+        // the decorView coordinate system rather than window coordinates.
+        mTargetViewCords = getTargetCoordinatesInDecor(view);
 
         mZoomableView.setX(mTargetViewCords.x);
         mZoomableView.setY(mTargetViewCords.y);
@@ -237,6 +238,14 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
         mScaleFactor = 1f;
+    }
+
+    private Point getTargetCoordinatesInDecor(View view) {
+        int[] targetLocation = new int[2];
+        int[] decorLocation = new int[2];
+        view.getLocationOnScreen(targetLocation);
+        mTargetContainer.getDecorView().getLocationOnScreen(decorLocation);
+        return new Point(targetLocation[0] - decorLocation[0], targetLocation[1] - decorLocation[1]);
     }
 
     private void addToDecorView(View v) {

@@ -47,10 +47,13 @@ class ChangeMediaSegmentDialog @JvmOverloads constructor
             dismiss()
         }
 
-        mBinding.newMediaSegmentIcon.setOnClickListener {
-            dismiss()
-            DialogHelper.showCreateMediaSegmentDialog(context, media)
+        val showCreateSegmentDialog = {
+            CreateMediaSegmentDialog(context, media) {
+                refreshSegments()
+            }.show()
         }
+        mBinding.newMediaSegmentIcon.setOnClickListener { showCreateSegmentDialog() }
+        mBinding.newMediaSegmentTxt.setOnClickListener { showCreateSegmentDialog() }
 
         val drw = AppCompatResources.getDrawable(context, R.drawable.add_32dp)
         drw?.setBounds(0, 0, 0, 0)
@@ -63,6 +66,13 @@ class ChangeMediaSegmentDialog @JvmOverloads constructor
         setContentView(mBinding.root)
     }
 
+
+    private fun refreshSegments() {
+        listMediaSegment.clear()
+        listMediaSegment.addAll(FxRoomDB.get(context).mediaSegmentDao().getAllByMediaId(media.fxId))
+        mAdapter?.notifyDataSetChanged()
+        mBinding.mediaSegmentList.setBorder(false, false, listMediaSegment.isEmpty(), false)
+    }
 
     override fun onDetachedFromWindow() {
         if(media is ShortsVideo) {

@@ -184,6 +184,7 @@ public class ShortsImageAdapter extends RecyclerView.Adapter<ShortsImageAdapter.
 
         ImageView photoView = holder.binding.shortsImageItemView;
         new Zoomy.Builder((Activity) holder.itemView.getContext())
+                .enableImmersiveMode(false)
                 .longPressListener(new LongPressListener() {
                     @Override
                     public void onLongPress(View v) {

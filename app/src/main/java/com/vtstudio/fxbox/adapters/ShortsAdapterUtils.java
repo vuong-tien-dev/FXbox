@@ -40,6 +40,7 @@ import com.vtstudio.fxbox.fxviews.dialog.DialogHelper;
 import com.vtstudio.fxbox.fxviews.dialog.DialogUtils;
 import com.vtstudio.fxbox.fxviews.dialog.FxCommentDialog;
 import com.vtstudio.fxbox.fxviews.dialog.FxMediaPropertiesDialog;
+import com.vtstudio.fxbox.fxviews.dialog.FxShortsImageExportDialog;
 import com.vtstudio.fxbox.fxviews.dialog.FxVideoSelectionDialog;
 import com.vtstudio.fxbox.fxviews.textview.FxExpandableTextView;
 import com.vtstudio.fxbox.listeners.OnSelectionItemListener;
@@ -273,6 +274,9 @@ public class ShortsAdapterUtils {
                 case FxVideoSelectionDialog.ACTION_SEE_PROPERTIES:
                     FxMediaVideo finalMedia1 = media;
                     dialog.setOnDismissListener(dialog1 -> handleSeePropertiesAction(context, finalMedia1));
+                    break;
+                case FxVideoSelectionDialog.ACTION_EXPORT:
+                    handleExportAction(context, media);
                     break;
             }
             return true;
@@ -531,6 +535,14 @@ public class ShortsAdapterUtils {
                 adapter.getFxPlayer().play();
             }
         });
+    }
+
+    private static void handleExportAction(Context context, Media media) {
+        if (media instanceof ShortsVideo && ((ShortsVideo) media).isImageList()) {
+            new FxShortsImageExportDialog(context, (ShortsVideo) media).show();
+        } else {
+            MediaManger.exportMediaToPublicFolder(context, media);
+        }
     }
 
     private static void handleSeePropertiesAction(Context context, Media media) {

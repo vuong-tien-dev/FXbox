@@ -182,10 +182,10 @@ public class FXDownloader extends Service {
 
                 @Override
                 public void onResponse(@NonNull Call call, @NonNull Response response) {
-                    if (response.isSuccessful()) {
-                        get(response);
+                    if (response.isSuccessful() && get(response)) {
                         download();
                     } else {
+                        response.close();
                         notifyOnFailed();
                     }
                     isCalling = false;
@@ -226,11 +226,10 @@ public class FXDownloader extends Service {
 
                             }
                         }
-                        notifyOnInterruption();
+                        return false;
                     }
                 }
             } else {
-                notifyOnFailed();
                 return false;
             }
             this.info.contentLength = bd.contentLength();
@@ -247,7 +246,9 @@ public class FXDownloader extends Service {
             downloadRunnable = () -> {
                 try {
 
-                    openOutputStreamIfNotYet();
+                    if (!openOutputStreamIfNotYet()) {
+                        return;
+                    }
 
                     while (true) {
 
@@ -289,7 +290,9 @@ public class FXDownloader extends Service {
                     }
 
                     Log.d("FXDownloader", "IOException, error when downloading: " + e.getMessage());
-
+                    if (isNetworkAvailable) {
+                        notifyOnInterruption();
+                    }
 
                 } finally {
                     if (info.isCompleted) {
@@ -297,7 +300,7 @@ public class FXDownloader extends Service {
                     }
                     if (eventHandler != null && !isCancelled) {
                         eventHandler.postDelayed(() -> {
-                            if (!info.isCompleted && isNetworkAvailable && !isDownloading) {
+                            if (!info.isCompleted && !info.isFailed && isNetworkAvailable && !isDownloading) {
                                 notifyOnInterruption();
                             }
                         }, 1000);
@@ -332,25 +335,25 @@ public class FXDownloader extends Service {
         }
 
         private void onNetworkConnect() {
-            if (info.isStarted && !current.info.isCompleted && canContinueDownloading) {
-                current.info.isWaitingConnect = false;
-                current.continueDownload();
+            if (info.isStarted && !info.isCompleted && info.isWaitingConnect && !isCancelled) {
+                info.isWaitingConnect = false;
+                continueDownload();
             }
         }
 
-        private void openOutputStreamIfNotYet() {
+        private boolean openOutputStreamIfNotYet() {
 
             if (outputStream != null) {
-                return;
+                return true;
             }
 
             try {
                 outputStream = new FileOutputStream(this.info.file);
+                return true;
             } catch (FileNotFoundException e) {
-
                 Log.e("FXDownloader", "Cannot create output stream\n" + e.getMessage());
-
                 notifyOnFailed();
+                return false;
             }
         }
 
@@ -454,6 +457,7 @@ public class FXDownloader extends Service {
                         notifyOnStart();
                         resume(true);
                     } else {
+                        response.close();
                         notifyOnFailed();
                     }
                 }
@@ -526,6 +530,7 @@ public class FXDownloader extends Service {
         private void notifyOnFailed() {
             info.isFailed = true;
             info.isPause = true;
+            info.isWaitingConnect = false;
             isDownloading = false;
 
             if (eventHandler != null) {
@@ -533,7 +538,10 @@ public class FXDownloader extends Service {
                     if (managerListener != null) {
                         managerListener.onFailed(this.info);
                     }
+                    FXDownloader.this.nextRequest();
                 });
+            } else {
+                FXDownloader.this.nextRequest();
             }
             downloadNotificationCreator.createNotification(Request.this.info.title, Request.this.info.id, Request.this.info.currentBytes, Request.this.info.contentLength, true, false, false);
         }
@@ -544,6 +552,7 @@ public class FXDownloader extends Service {
         private void notifyOnInterruption() {
             info.isFailed = true;
             info.isPause = true;
+            info.isWaitingConnect = false;
             isDownloading = false;
 
             if (eventHandler != null) {
@@ -551,7 +560,10 @@ public class FXDownloader extends Service {
                     if (managerListener != null) {
                         managerListener.onInterruption(this.info);
                     }
+                    FXDownloader.this.nextRequest();
                 });
+            } else {
+                FXDownloader.this.nextRequest();
             }
             downloadNotificationCreator.createNotification(Request.this.info.title, Request.this.info.id, Request.this.info.currentBytes, Request.this.info.contentLength, true, false, false);
         }

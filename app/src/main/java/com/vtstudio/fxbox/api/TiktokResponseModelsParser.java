@@ -285,9 +285,9 @@ public class TiktokResponseModelsParser {
 
         try {
             JSONObject aweme_detail = result.getJSONObject("aweme_detail");
-
-            video_url = aweme_detail.getJSONObject("video").getJSONObject("play_addr")
-                    .getJSONArray("url_list").getString(0);
+            JSONArray video_url_array = aweme_detail.getJSONObject("video").getJSONObject("play_addr")
+                    .getJSONArray("url_list");
+            video_url = video_url_array.get(video_url_array.length() > 1 ? 1 : 0).toString();
 //            video_url = result.getString("hdplay");
             desc = new StringBuilder(aweme_detail.getString("desc"));
             aweme_id = aweme_detail.getString("aweme_id");
