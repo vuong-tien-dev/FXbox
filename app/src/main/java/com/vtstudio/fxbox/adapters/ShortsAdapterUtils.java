@@ -586,6 +586,10 @@ public class ShortsAdapterUtils {
                     vObj.put("volume", shorts.getVolume());
                     vObj.put("mediaSegmentId", shorts.getMediaSegmentId());
                     vObj.put("isFavorite", shorts.isFavorite());
+                    vObj.put("isImageList", shorts.isImageList());
+                    if (shorts.getImageListPath() != null) {
+                        vObj.put("imageListPath", new org.json.JSONArray(shorts.getImageListPath()).toString());
+                    }
                     meta.put("video", vObj);
 
                     if (user != null) {
@@ -611,25 +615,57 @@ public class ShortsAdapterUtils {
                         meta.put("music", mObj);
                     }
 
-                    FxDesktopUploader.pushToDesktop(
-                            context,
-                            videoFile,
-                            meta.toString(),
-                            thumbFile,
-                            avatarFile,
-                            musicThumbFile,
-                            new FxDesktopUploader.UploadCallback() {
-                                @Override
-                                public void onSuccess(String response) {
-                                    Log.d("FxDesktop", "Push success: " + response);
-                                }
-
-                                @Override
-                                public void onError(String error) {
-                                    Log.e("FxDesktop", "Push error: " + error);
+                    if (shorts.isImageList()) {
+                        java.util.List<File> imageFiles = new java.util.ArrayList<>();
+                        if (shorts.getImageListPath() != null) {
+                            for (String imgPath : shorts.getImageListPath()) {
+                                if (imgPath != null && !imgPath.trim().isEmpty()) {
+                                    imageFiles.add(new File(imgPath));
                                 }
                             }
-                    );
+                        }
+                        File audioFile = shorts.getMediaStorePath() != null ? new File(shorts.getMediaStorePath()) : null;
+                        FxDesktopUploader.pushImageListToDesktop(
+                                context,
+                                imageFiles,
+                                audioFile,
+                                meta.toString(),
+                                thumbFile,
+                                avatarFile,
+                                musicThumbFile,
+                                new FxDesktopUploader.UploadCallback() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        Log.d("FxDesktop", "Push ImageList success: " + response);
+                                    }
+
+                                    @Override
+                                    public void onError(String error) {
+                                        Log.e("FxDesktop", "Push ImageList error: " + error);
+                                    }
+                                }
+                        );
+                    } else {
+                        FxDesktopUploader.pushToDesktop(
+                                context,
+                                videoFile,
+                                meta.toString(),
+                                thumbFile,
+                                avatarFile,
+                                musicThumbFile,
+                                new FxDesktopUploader.UploadCallback() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        Log.d("FxDesktop", "Push success: " + response);
+                                    }
+
+                                    @Override
+                                    public void onError(String error) {
+                                        Log.e("FxDesktop", "Push error: " + error);
+                                    }
+                                }
+                        );
+                    }
                 } catch (Exception e) {
                     Log.e("FxDesktop", "Error pushing to desktop", e);
                 }
