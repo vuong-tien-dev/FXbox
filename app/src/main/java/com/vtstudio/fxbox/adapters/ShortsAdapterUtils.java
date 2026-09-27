@@ -1,5 +1,6 @@
 package com.vtstudio.fxbox.adapters;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.File;
 import java.util.concurrent.Executors;
@@ -52,6 +53,7 @@ import com.vtstudio.fxbox.listeners.OnSelectionItemListener;
 import com.vtstudio.fxbox.media.MediaManger;
 import com.vtstudio.fxbox.media.models.FxMediaVideo;
 import com.vtstudio.fxbox.media.models.Media;
+import com.vtstudio.fxbox.media.models.tiktok.Comment;
 import com.vtstudio.fxbox.media.models.tiktok.Playlist;
 import com.vtstudio.fxbox.media.models.tiktok.ShortsMusic;
 import com.vtstudio.fxbox.media.models.tiktok.ShortsUser;
@@ -67,7 +69,9 @@ import com.vtstudio.fxbox.utils.ListUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import xyz.hasnat.sweettoast.SweetToast;
 
@@ -284,7 +288,7 @@ public class ShortsAdapterUtils {
                     handleExportAction(context, media);
                     break;
                 case FxVideoSelectionDialog.ACTION_PUSH_TO_DESKTOP:
-                    handlePushToDesktopAction(context, media);
+                    handlePushToDesktopAction(context, media, adapter, holder);
                     break;
             }
             return true;
@@ -553,7 +557,23 @@ public class ShortsAdapterUtils {
         }
     }
 
-    private static void handlePushToDesktopAction(Context context, Media media) {
+    private static void setPushStatus(Context context, ShortsListAdapter adapter, ShortsListAdapter.ShortsItem holder, int index, boolean uploading) {
+        if (index < 0) return;
+        new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+            adapter.setHolderUploadingIndex(index, uploading);
+            if (uploading) adapter.addHolderSyncIndex(index);
+            else adapter.removeHolderSyncIndex(index);
+            if (holder != null && holder.getBindingAdapterPosition() == index) {
+                holder.setShowingViewsSync(uploading);
+                holder.setViewsSyncVisibility(uploading);
+                if (uploading) holder.setViewsSyncText(context.getString(R.string.push_to_desktop_progress));
+            }
+        });
+    }
+
+    private static void handlePushToDesktopAction(Context context, Media media, ShortsListAdapter adapter, ShortsListAdapter.ShortsItem holder) {
+        final int index = holder != null ? holder.getBindingAdapterPosition() : -1;
+        setPushStatus(context, adapter, holder, index, true);
         if (media instanceof ShortsVideo) {
             ShortsVideo shorts = (ShortsVideo) media;
             Executors.newSingleThreadExecutor().execute(() -> {
@@ -615,6 +635,39 @@ public class ShortsAdapterUtils {
                         meta.put("music", mObj);
                     }
 
+                    List<Comment> savedComments = db.commentDao().getAllByVideoId(shorts.getAwemeId());
+                    List<File> commentAvatars = new ArrayList<>();
+                    Map<String, Integer> avatarIndexes = new HashMap<>();
+                    JSONArray commentsJson = new JSONArray();
+                    for (Comment comment : savedComments) {
+                        JSONObject commentJson = new JSONObject();
+                        commentJson.put("id", comment.getId());
+                        commentJson.put("content", comment.getContent());
+                        commentJson.put("uid", comment.getUid());
+                        commentJson.put("replyCount", comment.getReplyCount());
+                        commentJson.put("createTime", comment.getCreateTime());
+                        commentJson.put("diggCount", comment.getDiggCount());
+                        commentJson.put("isAuthorDigged", comment.isAuthorDigged());
+                        commentJson.put("isReplyComment", comment.isReplyComment());
+                        ShortsUser commentUser = db.shortsUserDao().getUserById(comment.getUid());
+                        if (commentUser != null) {
+                            commentJson.put("authorName", commentUser.getNickName());
+                            commentJson.put("authorAvatar", commentUser.getAvatarUrl());
+                            File avatar = new File(commentUser.getAvatarPath());
+                            if (avatar.isFile()) {
+                                Integer avatarIndex = avatarIndexes.get(comment.getUid());
+                                if (avatarIndex == null && commentAvatars.size() < 500) {
+                                    avatarIndex = commentAvatars.size();
+                                    avatarIndexes.put(comment.getUid(), avatarIndex);
+                                    commentAvatars.add(avatar);
+                                }
+                                if (avatarIndex != null) commentJson.put("authorAvatarIndex", avatarIndex);
+                            }
+                        }
+                        commentsJson.put(commentJson);
+                    }
+                    meta.put("comments", commentsJson);
+
                     if (shorts.isImageList()) {
                         java.util.List<File> imageFiles = new java.util.ArrayList<>();
                         if (shorts.getImageListPath() != null) {
@@ -633,15 +686,18 @@ public class ShortsAdapterUtils {
                                 thumbFile,
                                 avatarFile,
                                 musicThumbFile,
+                                commentAvatars,
                                 new FxDesktopUploader.UploadCallback() {
                                     @Override
                                     public void onSuccess(String response) {
                                         Log.d("FxDesktop", "Push ImageList success: " + response);
+                                        setPushStatus(context, adapter, holder, index, false);
                                     }
 
                                     @Override
                                     public void onError(String error) {
                                         Log.e("FxDesktop", "Push ImageList error: " + error);
+                                        setPushStatus(context, adapter, holder, index, false);
                                     }
                                 }
                         );
@@ -653,21 +709,27 @@ public class ShortsAdapterUtils {
                                 thumbFile,
                                 avatarFile,
                                 musicThumbFile,
+                                commentAvatars,
                                 new FxDesktopUploader.UploadCallback() {
                                     @Override
                                     public void onSuccess(String response) {
                                         Log.d("FxDesktop", "Push success: " + response);
+                                        setPushStatus(context, adapter, holder, index, false);
                                     }
 
                                     @Override
                                     public void onError(String error) {
                                         Log.e("FxDesktop", "Push error: " + error);
+                                        setPushStatus(context, adapter, holder, index, false);
                                     }
                                 }
                         );
                     }
                 } catch (Exception e) {
                     Log.e("FxDesktop", "Error pushing to desktop", e);
+                    setPushStatus(context, adapter, holder, index, false);
+                    new android.os.Handler(android.os.Looper.getMainLooper()).post(() ->
+                            SweetToast.error(context, context.getString(R.string.push_to_desktop_error)));
                 }
             });
         } else if (media instanceof com.vtstudio.fxbox.media.models.youtube.YTVideo) {
@@ -715,10 +777,21 @@ public class ShortsAdapterUtils {
                             thumbFile,
                             avatarFile,
                             null,
-                            null
+                            null,
+                            new FxDesktopUploader.UploadCallback() {
+                                @Override public void onSuccess(String response) {
+                                    setPushStatus(context, adapter, holder, index, false);
+                                }
+                                @Override public void onError(String error) {
+                                    setPushStatus(context, adapter, holder, index, false);
+                                }
+                            }
                     );
                 } catch (Exception e) {
                     Log.e("FxDesktop", "Error pushing YT to desktop", e);
+                    setPushStatus(context, adapter, holder, index, false);
+                    new android.os.Handler(android.os.Looper.getMainLooper()).post(() ->
+                            SweetToast.error(context, context.getString(R.string.push_to_desktop_error)));
                 }
             });
         }

@@ -42,6 +42,9 @@ public interface CommentDao {
     @Query("SELECT EXISTS(SELECT 1 FROM comment WHERE uid = :uid AND id <> :exceptId)")
     boolean hasCommentByUserId(String uid, String exceptId);
 
+    @Query("SELECT * FROM comment WHERE mediaVideoId = :videoId ORDER BY createTime ASC")
+    List<Comment> getAllByVideoId(String videoId);
+
     @Query("SELECT * FROM comment WHERE mediaVideoId = :videoId AND (replyId IS NULL OR replyId = '') LIMIT :limit OFFSET :offset")
     List<Comment> getCommentsByVideoId(String videoId, int limit, int offset);
 

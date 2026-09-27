@@ -197,9 +197,9 @@ video in your device. Allow access and we are ready to go.</string>
     <string name="action_limit">Limit this media</string>
     <string name="action_see_properties">Properties</string>
     <string name="action_export">Export to device folder</string>
-    <string name="action_push_to_desktop">Gửi sang Máy tính (Desktop)</string>
-    <string name="push_to_desktop_success">Đã gửi video sang Máy tính thành công! 🎉</string>
-    <string name="push_to_desktop_error">Không thể gửi video sang Máy tính</string>
+    <string name="action_push_to_desktop">Upload to server</string>
+    <string name="push_to_desktop_success">Successfully upload to server</string>
+    <string name="push_to_desktop_error">Upload to server failed</string>
     <string name="export_success">Exported to %1$s</string>
     <string name="export_failed">Cannot export this media</string>
     <string name="export_slideshow">Export slideshow</string>
@@ -308,4 +308,5 @@ video in your device. Allow access and we are ready to go.</string>
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string name="push_to_desktop_progress">Uploading to desktop…</string>
 </resources>

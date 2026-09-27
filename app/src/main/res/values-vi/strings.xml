@@ -176,6 +176,9 @@
     <string name="action_limit">Hạn chế phương tiện này</string>
     <string name="action_unmute">Bỏ tắt âm thanh</string>
     <string name="cloud">Kho lưu trữ</string>
+    <string name="action_push_to_desktop">Tải lên máy chủ</string>
+    <string name="push_to_desktop_success">Tải lên máy chủ thành công</string>
+    <string name="push_to_desktop_error">Tải lên máy chủ thất bại</string>
     <string name="connect_errol">Không thể kết nối đến máy chủ, vui lòng thử lại sau</string>
     <string name="tap_to_try_again">Nhấn vào thử lại để tải lại</string>
     <string name="warn_limit_action">Phương tiện bị giới hạn sẽ không xuất hiện trong mục dành cho bạn. Bạn có chắc sẽ giới hạn mục này ?</string>
@@ -254,4 +257,5 @@
     </string-array>
     <string name="action_adjust_volume">Tăng âm lượng</string>
 
+    <string name="push_to_desktop_progress">Đang tải lên máy tính…</string>
 </resources>

@@ -81,6 +81,7 @@ public class FxDesktopUploader {
             final File thumbFile,
             final File avatarFile,
             final File musicThumbFile,
+            final List<File> commentAvatarFiles,
             final UploadCallback callback
     ) {
         if (videoFile == null || !videoFile.exists()) {
@@ -121,6 +122,7 @@ public class FxDesktopUploader {
                     RequestBody.create(MediaType.parse("image/jpeg"), musicThumbFile));
         }
 
+        appendCommentAvatars(builder, commentAvatarFiles);
         sendMultipartRequest(context, url, deviceId, deviceName, builder.build(), callback);
     }
 
@@ -135,6 +137,7 @@ public class FxDesktopUploader {
             final File thumbFile,
             final File avatarFile,
             final File musicThumbFile,
+            final List<File> commentAvatarFiles,
             final UploadCallback callback
     ) {
         if (imageFiles == null || imageFiles.isEmpty()) {
@@ -187,7 +190,18 @@ public class FxDesktopUploader {
                     RequestBody.create(MediaType.parse("image/jpeg"), musicThumbFile));
         }
 
+        appendCommentAvatars(builder, commentAvatarFiles);
         sendMultipartRequest(context, url, deviceId, deviceName, builder.build(), callback);
+    }
+
+    private static void appendCommentAvatars(MultipartBody.Builder builder, List<File> avatars) {
+        if (avatars == null) return;
+        for (File avatar : avatars) {
+            if (avatar != null && avatar.isFile()) {
+                builder.addFormDataPart("comment_avatars", avatar.getName(),
+                        RequestBody.create(MediaType.parse("image/png"), avatar));
+            }
+        }
     }
 
     private static void sendMultipartRequest(

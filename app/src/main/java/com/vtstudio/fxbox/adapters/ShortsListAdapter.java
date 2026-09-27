@@ -127,6 +127,7 @@ public class ShortsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
     private OnEmptyListener onEmptyListener;
     private List<Integer> synchronizingIndexList;
+    private List<Integer> uploadingIndexList;
 
     public void setShouldRemoveWhenLimit(boolean shouldRemoveWhenLimit) {
         this.shouldRemoveWhenLimit = shouldRemoveWhenLimit;
@@ -371,6 +372,9 @@ public class ShortsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         // Nếu item đang đồnn bộ dữ liệu với tiktok
         if (holder.isShowingViewsSync()) {
             holder.setViewsSyncVisibility(true);
+            if (isHolderUploading(position)) {
+                holder.setViewsSyncText(context.getString(R.string.push_to_desktop_progress));
+            }
         }
 
         // Kiểm tra video bị giới hạn
@@ -720,12 +724,26 @@ public class ShortsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    public void setHolderUploadingIndex(int index, boolean uploading) {
+        if (uploading) {
+            if (uploadingIndexList == null) uploadingIndexList = new ArrayList<>();
+            if (!uploadingIndexList.contains(index)) uploadingIndexList.add(index);
+        } else if (uploadingIndexList != null) {
+            uploadingIndexList.remove(Integer.valueOf(index));
+            if (uploadingIndexList.isEmpty()) uploadingIndexList = null;
+        }
+    }
+
+    private boolean isHolderUploading(int index) {
+        return uploadingIndexList != null && uploadingIndexList.contains(index);
+    }
+
     public void addHolderSyncIndex(int index) {
         if (synchronizingIndexList == null) {
             synchronizingIndexList = new ArrayList<>();
         }
 
-        synchronizingIndexList.add(index);
+        if (!synchronizingIndexList.contains(index)) synchronizingIndexList.add(index);
     }
 
     public void removeHolderSyncIndex(int index) {
@@ -805,6 +823,7 @@ public class ShortsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         favoritesList = null;
         playingPlaylist = null;
         synchronizingIndexList = null;
+        uploadingIndexList = null;
         onLoadMoreListener = null;
         onEmptyListener = null;
         shortsVideoDao = null;
@@ -986,6 +1005,10 @@ public class ShortsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public void checkAndInflateExtraViews (@NonNull ShortsVideo shorts) {
             checkAndInflateExtraViews(shorts, null);
+        }
+
+        public void setViewsSyncText(String text) {
+            if (syncLayoutBinding != null) syncLayoutBinding.syncText.setText(text);
         }
 
         public void setViewsSyncVisibility(boolean visible) {
