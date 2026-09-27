@@ -38,6 +38,7 @@ class FxVideoSelectionDialog @JvmOverloads constructor
         const val ACTION_DELETE_MEDIA: Int = 10
         const val ACTION_SEE_PROPERTIES: Int = 11
         const val ACTION_EXPORT: Int = 12
+        const val ACTION_PUSH_TO_DESKTOP: Int = 13
         const val ACTION_DISABLE_MUTE: Int = -1
         const val ACTION_REMOVE_LIMIT: Int = -7
         const val ACTION_DISABLE_MODE_AUTO_SWIPE: Int = -5
@@ -48,6 +49,7 @@ class FxVideoSelectionDialog @JvmOverloads constructor
             ACTION_ADJUST_VOLUME,
             ACTION_CAPTURE,
             ACTION_EXPORT,
+            ACTION_PUSH_TO_DESKTOP,
             ACTION_CHANGE_VIDEO_SEGMENT,
             ACTION_MODE_AUTO_SWIPE,
             ACTION_ENTER_WINDOW_VIDEO_MODE,
@@ -162,7 +164,8 @@ class FxVideoSelectionDialog @JvmOverloads constructor
         ACTION_CHANGE_VIDEO_SEGMENT,
         ACTION_DELETE_MEDIA,
         ACTION_SEE_PROPERTIES,
-        ACTION_EXPORT
+        ACTION_EXPORT,
+        ACTION_PUSH_TO_DESKTOP
     )
 
     override fun onDetachedFromWindow() {

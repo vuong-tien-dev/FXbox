@@ -1,5 +1,10 @@
 package com.vtstudio.fxbox.adapters;
 
+import org.json.JSONObject;
+import java.io.File;
+import java.util.concurrent.Executors;
+import com.vtstudio.fxbox.network.FxDesktopUploader;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -278,6 +283,9 @@ public class ShortsAdapterUtils {
                 case FxVideoSelectionDialog.ACTION_EXPORT:
                     handleExportAction(context, media);
                     break;
+                case FxVideoSelectionDialog.ACTION_PUSH_TO_DESKTOP:
+                    handlePushToDesktopAction(context, media);
+                    break;
             }
             return true;
         });
@@ -542,6 +550,141 @@ public class ShortsAdapterUtils {
             new FxShortsImageExportDialog(context, (ShortsVideo) media).show();
         } else {
             MediaManger.exportMediaToPublicFolder(context, media);
+        }
+    }
+
+    private static void handlePushToDesktopAction(Context context, Media media) {
+        if (media instanceof ShortsVideo) {
+            ShortsVideo shorts = (ShortsVideo) media;
+            Executors.newSingleThreadExecutor().execute(() -> {
+                try {
+                    FxRoomDB db = FxRoomDB.get(context);
+                    ShortsUser user = db.shortsUserDao().getUserById(shorts.getAuthorId());
+                    ShortsMusic music = db.shortsMusicDao().getById(shorts.getMusicId());
+
+                    File videoFile = new File(shorts.getMediaStorePath());
+                    File thumbFile = shorts.getFxThumbnailPath() != null ? new File(shorts.getFxThumbnailPath()) : null;
+                    File avatarFile = user != null && user.getAvatarPath() != null ? new File(user.getAvatarPath()) : null;
+                    File musicThumbFile = music != null && music.getFxThumbnailPath() != null ? new File(music.getFxThumbnailPath()) : null;
+
+                    JSONObject meta = new JSONObject();
+                    JSONObject vObj = new JSONObject();
+                    vObj.put("fxId", shorts.getFxId());
+                    vObj.put("awemeId", shorts.getAwemeId());
+                    vObj.put("description", shorts.getDescription());
+                    vObj.put("authorId", shorts.getAuthorId());
+                    vObj.put("musicId", shorts.getMusicId());
+                    vObj.put("likeCount", shorts.getLikeCount());
+                    vObj.put("commentCount", shorts.getCommentCount());
+                    vObj.put("shareCount", shorts.getShareCount());
+                    vObj.put("playCount", shorts.getPlayCount());
+                    vObj.put("shortsCreateTime", shorts.getShortsCreateTime());
+                    vObj.put("duration", shorts.getDuration());
+                    vObj.put("width", shorts.getWidth());
+                    vObj.put("height", shorts.getHeight());
+                    vObj.put("shareUrl", shorts.getShareUrl());
+                    vObj.put("volume", shorts.getVolume());
+                    vObj.put("mediaSegmentId", shorts.getMediaSegmentId());
+                    vObj.put("isFavorite", shorts.isFavorite());
+                    meta.put("video", vObj);
+
+                    if (user != null) {
+                        JSONObject uObj = new JSONObject();
+                        uObj.put("fxId", user.getFxId());
+                        uObj.put("uid", user.getUid());
+                        uObj.put("uniqueId", user.getUniqueId());
+                        uObj.put("nickName", user.getNickName());
+                        uObj.put("signature", user.getSignature());
+                        uObj.put("followerCount", user.getFollowerCount());
+                        uObj.put("followingCount", user.getFollowingCount());
+                        uObj.put("verified", user.getVerified());
+                        meta.put("user", uObj);
+                    }
+
+                    if (music != null) {
+                        JSONObject mObj = new JSONObject();
+                        mObj.put("fxId", music.getFxId());
+                        mObj.put("id", music.getId());
+                        mObj.put("title", music.getTitle());
+                        mObj.put("author", music.getAuthor());
+                        mObj.put("duration", music.getDuration());
+                        meta.put("music", mObj);
+                    }
+
+                    FxDesktopUploader.pushToDesktop(
+                            context,
+                            videoFile,
+                            meta.toString(),
+                            thumbFile,
+                            avatarFile,
+                            musicThumbFile,
+                            new FxDesktopUploader.UploadCallback() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    Log.d("FxDesktop", "Push success: " + response);
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    Log.e("FxDesktop", "Push error: " + error);
+                                }
+                            }
+                    );
+                } catch (Exception e) {
+                    Log.e("FxDesktop", "Error pushing to desktop", e);
+                }
+            });
+        } else if (media instanceof com.vtstudio.fxbox.media.models.youtube.YTVideo) {
+            com.vtstudio.fxbox.media.models.youtube.YTVideo yt = (com.vtstudio.fxbox.media.models.youtube.YTVideo) media;
+            Executors.newSingleThreadExecutor().execute(() -> {
+                try {
+                    FxRoomDB db = FxRoomDB.get(context);
+                    YTUser ytUser = db.ytUserDao().getUserByChannelId(yt.getChannelId());
+                    File videoFile = new File(yt.getMediaStorePath());
+                    File thumbFile = yt.getFxThumbnailPath() != null ? new File(yt.getFxThumbnailPath()) : null;
+                    File avatarFile = ytUser != null && ytUser.getAvatarPath() != null ? new File(ytUser.getAvatarPath()) : null;
+
+                    JSONObject meta = new JSONObject();
+                    JSONObject vObj = new JSONObject();
+                    vObj.put("fxId", yt.getFxId());
+                    vObj.put("awemeId", yt.getId());
+                    vObj.put("description", yt.getTitle() != null ? yt.getTitle() : yt.getDescription());
+                    vObj.put("authorId", yt.getChannelId());
+                    vObj.put("musicId", "music_" + yt.getId());
+                    vObj.put("likeCount", yt.getLikeCount());
+                    vObj.put("commentCount", yt.getCommentCount());
+                    vObj.put("shareCount", 0);
+                    vObj.put("playCount", yt.getPlayCount());
+                    vObj.put("duration", yt.getDuration());
+                    vObj.put("width", yt.getWidth());
+                    vObj.put("height", yt.getHeight());
+                    vObj.put("shareUrl", yt.getShareUrl());
+                    vObj.put("isFavorite", yt.isFavorite());
+                    meta.put("video", vObj);
+
+                    if (ytUser != null) {
+                        JSONObject uObj = new JSONObject();
+                        uObj.put("fxId", ytUser.getFxId());
+                        uObj.put("uid", ytUser.getChannelId());
+                        uObj.put("uniqueId", ytUser.getUniqueId());
+                        uObj.put("nickName", ytUser.getChannelName());
+                        uObj.put("verified", ytUser.isVerified());
+                        meta.put("user", uObj);
+                    }
+
+                    FxDesktopUploader.pushToDesktop(
+                            context,
+                            videoFile,
+                            meta.toString(),
+                            thumbFile,
+                            avatarFile,
+                            null,
+                            null
+                    );
+                } catch (Exception e) {
+                    Log.e("FxDesktop", "Error pushing YT to desktop", e);
+                }
+            });
         }
     }
 
